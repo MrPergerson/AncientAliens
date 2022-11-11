@@ -464,7 +464,7 @@ GameObject:
   - component: {fileID: 509076734}
   - component: {fileID: 509076735}
   m_Layer: 0
-  m_Name: Obj
+  m_Name: TestTileObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -495,9 +495,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 509076733}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1280844d17f4dcf4e860f1464843d803, type: 3}
+  m_Script: {fileID: 11500000, guid: 6a97da99cf931ad48a3cfd466cb489d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _canBeMoved: 1
+  _value: 1
+  _canShareTile: 1
 --- !u!1 &832575517
 GameObject:
   m_ObjectHideFlags: 0
@@ -705,6 +708,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b3a2320211866942abc7e09010b9ef7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  TestTileObject: {fileID: 509076733}
 --- !u!1 &1774863625
 GameObject:
   m_ObjectHideFlags: 0
@@ -716,6 +720,7 @@ GameObject:
   - component: {fileID: 1774863629}
   - component: {fileID: 1774863627}
   - component: {fileID: 1774863626}
+  - component: {fileID: 1774863630}
   m_Layer: 0
   m_Name: UFO
   m_TagString: Untagged
@@ -764,6 +769,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1774863630
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1774863625}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c268c5d3d0059aa4d967add5f275cf2b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1851065707
 GameObject:
   m_ObjectHideFlags: 0

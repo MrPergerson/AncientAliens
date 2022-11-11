@@ -6,6 +6,22 @@ namespace AncientAliens
 {
     public class GridDebug : MonoBehaviour
     {
+
+        [SerializeField] GameObject TestTileObject;
+
+        private void Start()
+        {
+            if (!TestTileObject)
+                Debug.LogError("TestTileObject is null");
+            else
+            {
+                var result = Grid.AssignTileObjectToTile(TestTileObject, 2, 3);
+                //print(result);
+
+            }
+
+        }
+
         private void OnDrawGizmos()
         {
             if (Grid.Tiles != null)

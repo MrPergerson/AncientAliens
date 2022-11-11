@@ -59,7 +59,7 @@ namespace AncientAliens
             var x = position.x;
             var z = position.z;
 
-            if (x < 0 || x >= SizeX || z < 0 || z >= SizeY)
+            if (!IndexIsInBounds(x,z))
                 return null;
 
             int i = (int)Mathf.Floor(position.x / TileSize);
@@ -68,6 +68,23 @@ namespace AncientAliens
             return Tiles[i,j];
         }
 
+        public static bool AssignTileObjectToTile(GameObject tileObject, int x, int y)
+        {
+            if (!IndexIsInBounds(x, y))
+                return false;
+
+            var obj = tileObject.GetComponent<TileObject>();
+            if (obj == null) return false;
+
+            var result = Tiles[x, y].AddTileObject(obj);
+
+            return result;
+        }
+
+        private static bool IndexIsInBounds(float x, float y)
+        {
+            return (x > 0 || x <= SizeX || y > 0 || y <= SizeY);
+        }
 
 
     }
