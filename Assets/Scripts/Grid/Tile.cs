@@ -8,7 +8,7 @@ namespace AncientAliens
     {
         TileObject[] tileObjects;
 
-        List<Tile> AdjcentTiles;
+        
 
         public Vector2 index;
         public Vector3 position;
@@ -30,9 +30,22 @@ namespace AncientAliens
             center = new Vector3(position.x + size / 2, 0, position.z + size / 2);
         }
 
-        private void FindAdjcentTiles()
+        public Tile GetClosestEmptyTile()
         {
-            AdjcentTiles = new List<Tile>();
+            List<Tile> AdjcentTiles = FindAdjcentTiles();
+
+            foreach(var tile in AdjcentTiles)
+            {
+                if (tile.GetTileObjectCount() == 0)
+                    return tile;
+            }
+
+            return null;
+        }
+
+        private List<Tile> FindAdjcentTiles()
+        {
+            List<Tile> AdjcentTiles = new List<Tile>();
 
             int Xindex = (int)index.x;
             int Yindex = (int)index.y;
@@ -55,63 +68,102 @@ namespace AncientAliens
                     }
                 }
             }
-        }
 
-        public List<Tile> GetAdjcentTiles()
-        {
             return AdjcentTiles;
         }
 
-        public bool ContainsMoveableTileObject()
+        private TileObject PeekAtTopTileObject()
         {
-            if (tileObjects[0] == null) return false;
+            // 0 bottom
+            // 1 top
+            //Debug.Log("Peeked at " + this.ToString() + ". Found " + PrintTileObjects());
 
-            if (isLocked) return false;
+            if (tileObjects[1] != null) return tileObjects[1];
+            if (tileObjects[0] != null) return tileObjects[0];
 
-            if (tileObjects[0].CanBeMoved == false) return false;
 
-            return true;
+            return null;
+        }
+
+        private TileObject PullTileObject()
+        {
+            TileObject tileObject = null;
+
+            if (tileObjects[1] != null)
+            {
+                tileObject = tileObjects[1];
+                tileObjects[1] = null;
+            }
+            else if (tileObjects[0] != null)
+            {
+                tileObject = tileObjects[0];
+                tileObjects[0] = null;
+            }
+
+            return tileObject;
+        }
+
+        private bool PushNewTileObject(TileObject obj)
+        {
+            if (tileObjects[0] == null)
+            {
+               tileObjects[0] = obj; return true;
+            }
+
+            if(tileObjects[1] == null)
+            {
+                tileObjects[1] = obj; return true;
+            }
+
+
+            return false;
+        }
+
+        public int GetTileObjectCount()
+        {
+            int i = 0;
+            if (tileObjects[0] != null) i++;
+            if (tileObjects[1] != null) i++;
+
+            return i;
         }
 
         public bool AddTileObject(TileObject obj)
         {
-            if (tileObjects[0] != null && tileObjects[1] != null) return false;
 
-            if (tileObjects[0] == null)
+            if (GetTileObjectCount() >= 2) return false;
+
+            if(GetTileObjectCount() == 1)
             {
-                tileObjects[0] = obj;
-                obj.transform.position = center; // tractor beam also sets position
-                return true;
+                var canShare = PeekAtTopTileObject().CanShareTile;
+                if (!canShare) return false;
             }
 
-            if (!tileObjects[0].CanShareTile) return false;
+            PushNewTileObject(obj);
+            obj.transform.position = center; // tractor beam also sets position
 
-            tileObjects[1] = obj;
-            obj.transform.position = center;
-            GameManager.Instance.Combine(tileObjects[0], tileObjects[1], this);
+            if(GetTileObjectCount() == 2)
+            {
+                GameManager.Instance.Combine(tileObjects[0], tileObjects[1], this);
+
+            }
 
             return true;
         }
 
         public TileObject ExtractTileObject()
         {
-            if(ContainsMoveableTileObject())
+            
+            var tileObject = PeekAtTopTileObject();
+            
+            if (tileObject != null && tileObject.CanBeMoved)
             {
-                var tileObj = tileObjects[0];
-                tileObjects[0] = null;
-
-                if(tileObjects[1] != null)
-                {
-                    tileObjects[0] = tileObjects[1];
-                    tileObjects[1] = null;
-                }    
-
-                return tileObj;
+                
+                return PullTileObject();
             }
-            else
-            {
-                return null;
-            }
+
+            return null;
+
         }
 
         public void ClearTile()
@@ -119,6 +171,8 @@ namespace AncientAliens
             tileObjects[0] = null;
             tileObjects[1] = null;
         }
+
+        
 
         public override bool Equals(object obj)
         {
@@ -139,6 +193,26 @@ namespace AncientAliens
         public override int GetHashCode()
         {
             return this.position.GetHashCode();
+        }
+
+        public override string ToString()
+        {
+            return "Tile(" + index.x + ", " + index.y + ")";
+        }
+
+        public string PrintTileObjects()
+        {
+            string list = "[";
+
+            if (tileObjects[0] != null) list += tileObjects[0].Type;
+            else list += "null";
+
+            list += ", ";
+
+            if (tileObjects[1] != null) list += tileObjects[1].Type;
+            else list += "null";
+
+            return list + "]";
         }
     }
 }

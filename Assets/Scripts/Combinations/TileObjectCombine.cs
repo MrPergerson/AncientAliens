@@ -16,6 +16,7 @@ namespace AncientAliens
         public virtual void Cancel()
         {
             StopAllCoroutines();
+            location.isLocked = false;
         }
 
         protected abstract IEnumerator ProcessCombineAction();

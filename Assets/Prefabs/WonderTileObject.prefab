@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7508436000111954360}
   m_Layer: 0
   m_Name: WonderTileObject
-  m_TagString: Untagged
+  m_TagString: TileObject
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -48,7 +48,7 @@ MonoBehaviour:
   _type: Wonder
   _canBeMoved: 0
   _value: 0
-  _canShareTile: 0
+  _canShareTile: 1
 --- !u!1 &7790983696708176577
 GameObject:
   m_ObjectHideFlags: 0

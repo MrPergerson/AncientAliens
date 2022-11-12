@@ -13,9 +13,7 @@ namespace AncientAliens
 
         private void Start()
         {
-            if (!TestTileObject1 || !TestTileObject2)
-                Debug.LogError("TestTileObject is null");
-            else
+            if (TestTileObject1 && TestTileObject2)
             {
                 var result1 = Grid.AssignTileObjectToTile(TestTileObject1, 8, 3);
                 var result2 = Grid.AssignTileObjectToTile(TestTileObject2, 3, 5);

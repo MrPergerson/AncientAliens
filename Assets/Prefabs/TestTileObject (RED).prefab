@@ -109,7 +109,7 @@ GameObject:
   - component: {fileID: 939237998011386044}
   m_Layer: 0
   m_Name: TestTileObject (RED)
-  m_TagString: Untagged
+  m_TagString: TileObject
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
