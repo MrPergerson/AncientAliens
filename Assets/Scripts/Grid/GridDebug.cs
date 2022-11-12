@@ -7,15 +7,18 @@ namespace AncientAliens
     public class GridDebug : MonoBehaviour
     {
 
-        [SerializeField] GameObject TestTileObject;
+        [SerializeField] GameObject TestTileObject1;
+        [SerializeField] GameObject TestTileObject2;
+
 
         private void Start()
         {
-            if (!TestTileObject)
+            if (!TestTileObject1 || !TestTileObject2)
                 Debug.LogError("TestTileObject is null");
             else
             {
-                var result = Grid.AssignTileObjectToTile(TestTileObject, 2, 3);
+                var result1 = Grid.AssignTileObjectToTile(TestTileObject1, 8, 3);
+                var result2 = Grid.AssignTileObjectToTile(TestTileObject2, 3, 5);
                 //print(result);
 
             }

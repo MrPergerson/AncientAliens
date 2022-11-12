@@ -7,6 +7,7 @@ namespace AncientAliens
     public class TractorBeam : MonoBehaviour
     {
         TileObject tileObject;
+        [SerializeField] bool DEBUG;
 
         public Tile GetTileBelow()
         {
@@ -28,11 +29,19 @@ namespace AncientAliens
         {
             var tile = GetTileBelow();
 
-            if (tile == null) return false;
+            if (tile == null)
+            {
+                if (DEBUG) print(gameObject + ": Tile is NULL");
+                return false;
+            }
 
             var tileObject = tile.ExtractTileObject();
 
-            if (tileObject == null) return false;
+            if (tileObject == null)
+            {
+                if (DEBUG) print(gameObject + ": Failed to get tileObject");
+                return false;
+            }
 
             this.tileObject = tileObject;
             SetTileObjectPositionToTractorBeam();
@@ -44,7 +53,13 @@ namespace AncientAliens
         {
             var tile = GetTileBelow();
 
-            if (tile == null) return false;
+            if (tile == null)
+            {
+                if(DEBUG) print(gameObject + ": Tile is NULL");
+                return false;
+            }
+
+            // IF pyramid ... this doesn't belong here but it's an easy solution
 
             var result = tile.AddTileObject(tileObject);
 
@@ -56,6 +71,7 @@ namespace AncientAliens
             }
             else
             {
+                if (DEBUG) print(gameObject + ": Failed to add tileObject to tile at " + tile.index);
                 return false;
             }
 

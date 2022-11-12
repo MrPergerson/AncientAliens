@@ -37,6 +37,8 @@ namespace AncientAliens
                     Tiles[i, j] = Tile;
                 }
             }
+
+            //Tiles[0, 0].GetAdjcentTiles();
         }
 
 
@@ -68,6 +70,15 @@ namespace AncientAliens
             return Tiles[i,j];
         }
 
+        public static Tile GetTileAt(Vector2 index)
+        {
+
+            if (!IndexIsInBounds(index.x, index.y))
+                return null;
+
+            return Tiles[(int)index.x, (int)index.y];
+        }
+
         public static bool AssignTileObjectToTile(GameObject tileObject, int x, int y)
         {
             if (!IndexIsInBounds(x, y))
@@ -81,9 +92,44 @@ namespace AncientAliens
             return result;
         }
 
-        private static bool IndexIsInBounds(float x, float y)
+        public static bool AssignWonderToGrid(GameObject[] tileObjects, Vector2[] tiles)
         {
-            return (x > 0 || x <= SizeX || y > 0 || y <= SizeY);
+            //TODO needs validation test
+            /*  
+             *  ->  @@
+             *      @@
+             */
+
+            if (tileObjects.Length != 4 || tileObjects.Length != 4)
+                return false;
+
+
+            var result = true;
+            for (int i = 0; i < 4; i++)
+            {
+                result = AssignTileObjectToTile(tileObjects[i], (int)tiles[i].x, (int)tiles[i].y);
+
+                if (result == false)
+                    break;
+            }
+
+            if(result == false)
+            {
+                for (int i = 0; i < 4; i++)
+                {
+                    var tile = Grid.GetTileAt(tiles[i]);
+
+                    if (tile != null) tile.ClearTile();
+                }
+            }
+
+
+            return true;
+        }
+
+        public static bool IndexIsInBounds(float x, float y)
+        {
+            return ((x >= 0 && x < SizeX) && (y >= 0 && y < SizeY));
         }
 
 

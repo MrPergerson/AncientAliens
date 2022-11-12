@@ -7,12 +7,19 @@ namespace AncientAliens
 {
     public class TileObject : MonoBehaviour
     {
+        [SerializeField] string _type;
         [SerializeField] Tile _tile;
         //TileObjectRules rules;
         [SerializeField] bool _canBeMoved = true;
         [SerializeField] int _value = 1;
         [SerializeField] bool _canShareTile = true;
         [SerializeField] enum CombineMethod { SameTile, AdjcentTile };
+
+        public string Type
+        {
+            get { return _type; }
+            private set { _type = value; }
+        }
 
         public bool CanBeMoved {
             get { return _canBeMoved; }

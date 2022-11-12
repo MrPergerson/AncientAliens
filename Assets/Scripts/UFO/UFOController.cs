@@ -26,13 +26,13 @@ namespace AncientAliens.UFO
                 if (tractorBeam.HasTileObject())
                 {
                     var result = tractorBeam.DropTileObject();
-                    if (result) print("Dropped obj");
+                    //if (result) print("Dropped obj");
 
                 }
                 else
                 {
                     var result = tractorBeam.PickUpTileObject();
-                    if (result) print("Picked up obj");
+                    //if (result) print("Picked up obj");
 
                 }
             };
