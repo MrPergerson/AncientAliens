@@ -32,6 +32,9 @@ namespace AncientAliens
 
         public Tile GetClosestEmptyTile()
         {
+
+            // this needs to become recursive
+
             List<Tile> AdjcentTiles = FindAdjcentTiles();
 
             foreach(var tile in AdjcentTiles)
