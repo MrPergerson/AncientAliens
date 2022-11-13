@@ -2,12 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace AncientAliens
+
+namespace AncientAliens.GridSystem
 {
 
-    public static class Grid
+    public static class EasyGrid
     {
         static Tile[,] _tiles;
+
+
 
         public static Tile[,] Tiles
         {
@@ -33,7 +36,7 @@ namespace AncientAliens
                 for (int j = 0; j < gridSizeY; j++)
                 {
                     Vector3 pos = new Vector3(i * TileSize, 0, j * TileSize);
-                    Tile Tile = new Tile(new Vector2(i,j), pos, TileSize);
+                    Tile Tile = new Tile(new Vector2(i,j), pos, TileSize, false);
                     Tiles[i, j] = Tile;
                 }
             }
@@ -79,6 +82,35 @@ namespace AncientAliens
             return Tiles[(int)index.x, (int)index.y];
         }
 
+        public static List<Tile> FindAdjcentTiles(Tile tile)
+        {
+            List<Tile> AdjcentTiles = new List<Tile>();
+
+            int Xindex = (int)tile.index.x;
+            int Yindex = (int)tile.index.y;
+
+            for (int x = -1; x <= 1; x++)
+            {
+                for (int y = -1; y <= 1; y++)
+                {
+                    if (x != 0 || y != 0)
+                    {
+                        //Debug.Log((Xindex + x) + ", " + (Yindex + y));
+                        var LocationX = Xindex + x;
+                        var LocationY = Yindex + y;
+
+                        if (IndexIsInBounds(LocationX, LocationY))
+                        {
+                            AdjcentTiles.Add(GetTileAt(new Vector2(LocationX, LocationY)));
+                        }
+
+                    }
+                }
+            }
+
+            return AdjcentTiles;
+        }
+
         public static bool AssignTileObjectToTile(GameObject tileObject, int x, int y)
         {
             if (!IndexIsInBounds(x, y))
@@ -117,7 +149,7 @@ namespace AncientAliens
             {
                 for (int i = 0; i < 4; i++)
                 {
-                    var tile = Grid.GetTileAt(tiles[i]);
+                    var tile = EasyGrid.GetTileAt(tiles[i]);
 
                     if (tile != null) tile.ClearTile();
                 }

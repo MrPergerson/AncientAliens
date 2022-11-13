@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using AncientAliens.GridSystem;
+
 
 namespace AncientAliens
 {
@@ -12,12 +14,20 @@ namespace AncientAliens
         public Tile GetTileBelow()
         {
 
-            Tile tile = Grid.GetTileAt(transform.position);
+            Tile tile = EasyGrid.GetTileAt(transform.position);
 
             //print(tile.index);
 
 
             return tile;
+        }
+
+        public string GetTileObjectType()
+        {
+            if (HasTileObject())
+                return tileObject.Type;
+            else
+                return "";
         }
 
         public bool HasTileObject()

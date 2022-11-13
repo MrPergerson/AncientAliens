@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using AncientAliens.GridSystem;
 
-namespace AncientAliens
+namespace AncientAliens.GridSystem
 {
     public class GridDebug : MonoBehaviour
     {
@@ -15,8 +16,8 @@ namespace AncientAliens
         {
             if (TestTileObject1 && TestTileObject2)
             {
-                var result1 = Grid.AssignTileObjectToTile(TestTileObject1, 8, 3);
-                var result2 = Grid.AssignTileObjectToTile(TestTileObject2, 3, 5);
+                var result1 = EasyGrid.AssignTileObjectToTile(TestTileObject1, 8, 3);
+                var result2 = EasyGrid.AssignTileObjectToTile(TestTileObject2, 3, 5);
                 //print(result);
 
             }
@@ -25,14 +26,19 @@ namespace AncientAliens
 
         private void OnDrawGizmos()
         {
-            if (Grid.Tiles != null)
+            var yoffset = new Vector3(0, .005f, 0);
+            Gizmos.DrawWireCube(new Vector3(EasyGrid.SizeX / 2, 0, EasyGrid.SizeY / 2) + yoffset, new Vector3(EasyGrid.SizeX, 0, EasyGrid.SizeY));
+
+            if (EasyGrid.Tiles != null)
             {
-                for (int i = 0; i < Grid.SizeX; i++)
+                for (int i = 0; i < EasyGrid.SizeX; i++)
                 {
-                    for (int j = 0; j < Grid.SizeY; j++)
+                    for (int j = 0; j < EasyGrid.SizeY; j++)
                     {
-                        var pos = Grid.Tiles[i, j].center;
-                        Gizmos.DrawWireSphere(pos, .1f);
+
+                        var pos = EasyGrid.Tiles[i, j].center;
+                        Gizmos.DrawWireSphere(pos, .05f);
+                        Gizmos.DrawWireCube(pos + yoffset, new Vector3(1,0,1) * (EasyGrid.TileSize - .1f));
                     }
                 }
             }

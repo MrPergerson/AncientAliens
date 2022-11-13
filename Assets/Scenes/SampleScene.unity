@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.17276844, g: 0.21589246, b: 0.2978263, a: 1}
+  m_IndirectSpecularColor: {r: 0.4366757, g: 0.48427194, b: 0.5645252, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -496,7 +496,7 @@ Light:
   m_Type: 1
   m_Shape: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 2
+  m_Intensity: 1
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -1129,6 +1129,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5792406bdd1c6bc40bc9fd3a90158ab9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _wonderBuildProgress: 20
   tileSize: 1
   gridSizeX: 10
   gridSizeZ: 10
@@ -1144,14 +1145,6 @@ MonoBehaviour:
   PeopleAndSandStoneCombine: {fileID: 3515477913227128860, guid: dbcb5c383add42e4aa0f69f27ec7e0a7,
     type: 3}
   SandBrickAndWonderCombine: {fileID: 1333915463391056375, guid: eeda9ea106f1af44ab643ba1d6ed725f,
-    type: 3}
-  TestCombine: {fileID: 5665206570163831466, guid: e59a0e5fc1ae0f84eaaf2198085d4d5b,
-    type: 3}
-  DEBUGTest1: {fileID: 939237998011386046, guid: 4fc08e2eedc9e1b499ffa987a0c535c4,
-    type: 3}
-  DEBUGTest2: {fileID: 7738354834926262723, guid: 08c1a6db9231b4748af5ec6e9ccaeabe,
-    type: 3}
-  DEBUGTest3: {fileID: 5694482666253905953, guid: c79ce0b61370366478fd6a6668b5952d,
     type: 3}
 --- !u!4 &1415037322
 Transform:
@@ -1344,6 +1337,7 @@ GameObject:
   - component: {fileID: 1774863627}
   - component: {fileID: 1774863626}
   - component: {fileID: 1774863630}
+  - component: {fileID: 1774863631}
   m_Layer: 0
   m_Name: UFO
   m_TagString: Untagged
@@ -1376,6 +1370,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 3.4
+  isMoving: 0
 --- !u!4 &1774863629
 Transform:
   m_ObjectHideFlags: 0
@@ -1406,6 +1401,34 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DEBUG: 0
+--- !u!114 &1774863631
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1774863625}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c341d974ff21de49ad0c459c72acbe1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AMB_Mixer: {fileID: 5038618434395261335, guid: 310d9dd518e2e1a4b849b7b58d9fdab4,
+    type: 2}
+  SFX_Mixer: {fileID: -6493204333896640244, guid: 310d9dd518e2e1a4b849b7b58d9fdab4,
+    type: 2}
+  AMB_UFO_Flyaround: {fileID: 8300000, guid: 049c2e9985ad738409450d7b89583b81, type: 3}
+  AMB_UFO_Idle: {fileID: 8300000, guid: 049c2e9985ad738409450d7b89583b81, type: 3}
+  SFX_Drop: {fileID: 8300000, guid: c606362daf4c5d046a638cf7bf758d2c, type: 3}
+  SFX_Pickup: {fileID: 8300000, guid: fd938565fcf3492439603cea09dc4ed0, type: 3}
+  SFX_Pickup_SandBrick:
+  - {fileID: 8300000, guid: fd938565fcf3492439603cea09dc4ed0, type: 3}
+  SFX_Drop_SandBrick:
+  - {fileID: 8300000, guid: c606362daf4c5d046a638cf7bf758d2c, type: 3}
+  SFX_Pickup_Villager:
+  - {fileID: 8300000, guid: c8e5d5b39c812d44586cfed067ac62b4, type: 3}
+  - {fileID: 8300000, guid: fed7830626f5089478b00fbb89ea578f, type: 3}
+  - {fileID: 8300000, guid: e4432a9b4852cab4cbf37bd040cc393b, type: 3}
 --- !u!1 &1851065707
 GameObject:
   m_ObjectHideFlags: 0

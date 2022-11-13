@@ -12,6 +12,14 @@ namespace AncientAliens.UFO
 
         Vector3 direction = Vector3.zero;
 
+        public bool isMoving;
+
+        public delegate void StartedMoving();
+        public event StartedMoving onStartedMoving;
+
+        public delegate void StoppedMoving();
+        public event StartedMoving onStoppedMoving;
+
         private void Update()
         {
            transform.position = transform.position + direction * moveSpeed * Time.deltaTime;
@@ -24,8 +32,22 @@ namespace AncientAliens.UFO
 
         public void MoveToDirection(Vector3 direction)
         {
+            
             this.direction = direction;
-            this.direction.Normalize();
+            //this.direction.Normalize();
+
+            var magnitude = direction.sqrMagnitude;
+            if (magnitude > 0 && isMoving == false)
+            {
+                isMoving = true;
+                onStartedMoving?.Invoke();
+
+            }
+            else if(magnitude == 0 && isMoving == true)
+            {
+                isMoving = false;
+                onStoppedMoving?.Invoke();
+            }
 
         }
 

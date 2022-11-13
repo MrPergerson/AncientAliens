@@ -5,7 +5,7 @@ using UnityEngine.InputSystem;
 
 namespace AncientAliens.UFO
 {
-    [RequireComponent(typeof(SimpleMove), typeof(TractorBeam), typeof(UFOSoundPlayer)]
+    [RequireComponent(typeof(SimpleMove), typeof(TractorBeam), typeof(UFOSoundPlayer))]
     public class UFOController : MonoBehaviour
     {
         Controls controls;
@@ -13,6 +13,8 @@ namespace AncientAliens.UFO
         TractorBeam tractorBeam;
 
         UFOSoundPlayer soundPlayer;
+
+
 
         private void Awake()
         {
@@ -25,6 +27,9 @@ namespace AncientAliens.UFO
         private void Start()
         {
             soundPlayer.PlayAMB(soundPlayer.AMB_UFO_Idle);
+
+            simpleMove.onStartedMoving += () => { soundPlayer.PlayAMB(soundPlayer.AMB_UFO_Flyaround); };
+            simpleMove.onStoppedMoving += () => { soundPlayer.PlayAMB(soundPlayer.AMB_UFO_Idle); };
         }
 
         private void OnEnable()
@@ -33,27 +38,26 @@ namespace AncientAliens.UFO
             controls.Player.Action.performed += (ctx) => {
                 if (tractorBeam.HasTileObject())
                 {
+                    var type = tractorBeam.GetTileObjectType();
                     var result = tractorBeam.DropTileObject();
-                    //if (result) print("Dropped obj");
+
+                    if (result)
+                    {
+                        soundPlayer.PlayDropSoundForType(type);
+                    }
 
                 }
                 else
                 {
                     var result = tractorBeam.PickUpTileObject();
+
+                    if(result)
+                    {
+                        soundPlayer.PlayPickUpSoundForType(tractorBeam.GetTileObjectType());
+                    }
                     //if (result) print("Picked up obj");
 
                 }
-            };
-
-            controls.Player.Move.performed += (ctx) =>
-            {
-                print("performed");
-                soundPlayer.PlayAMB(soundPlayer.AMB_UFO_Flyaround);
-            };
-
-            controls.Player.Move.canceled += (ctx) =>
-            {
-                soundPlayer.PlayAMB(soundPlayer.AMB_UFO_Idle);
             };
         }
 
@@ -68,6 +72,9 @@ namespace AncientAliens.UFO
             var moveInput = controls.Player.Move.ReadValue<Vector2>();
             var dir = new Vector3(moveInput.x, 0, moveInput.y);
             simpleMove.MoveToDirection(dir);
+
+
+
         }
 
 

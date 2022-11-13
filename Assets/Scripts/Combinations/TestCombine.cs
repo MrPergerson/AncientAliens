@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using AncientAliens.GridSystem;
 
-namespace AncientAliens
+namespace AncientAliens.Combinations
 {
     public class TestCombine : TileObjectCombine
     {

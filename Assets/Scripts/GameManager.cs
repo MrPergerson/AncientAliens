@@ -1,6 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using AncientAliens.Combinations;
+using AncientAliens.GridSystem;
+
 
 namespace AncientAliens
 {
@@ -44,7 +47,7 @@ namespace AncientAliens
                 Instance = this;
             }
 
-            Grid.InitializeGrid(tileSize, gridSizeX, gridSizeZ);
+             EasyGrid.InitializeGrid(tileSize, gridSizeX, gridSizeZ);
 
             SetUpLevel();
             //var result2 = Grid.AssignTileObjectToTile(Instantiate(People), 3, 5);
@@ -115,19 +118,19 @@ namespace AncientAliens
             tiles[2] = new Vector2(2, 3);
             tiles[3] = new Vector2(3, 3);
 
-            Grid.AssignWonderToGrid(wonderObjs, tiles);
+            EasyGrid.AssignWonderToGrid(wonderObjs, tiles);
         }
 
         private void SetUpLevel()
         {
             PlaceWonderInLevel();
 
-            var result1 = Grid.AssignTileObjectToTile(Instantiate(People), 8, 3);
-            var result2 = Grid.AssignTileObjectToTile(Instantiate(People), 3, 5);
-            var result3 = Grid.AssignTileObjectToTile(Instantiate(People), 6, 5);
+            var result1 = EasyGrid.AssignTileObjectToTile(Instantiate(People), 8, 3);
+            var result2 = EasyGrid.AssignTileObjectToTile(Instantiate(People), 3, 5);
+            var result3 = EasyGrid.AssignTileObjectToTile(Instantiate(People), 6, 5);
 
-            var result4 = Grid.AssignTileObjectToTile(Instantiate(SandStone), 8, 8);
-            var result5 = Grid.AssignTileObjectToTile(Instantiate(SandStone), 7, 4);
+            var result4 = EasyGrid.AssignTileObjectToTile(Instantiate(SandStone), 8, 8);
+            var result5 = EasyGrid.AssignTileObjectToTile(Instantiate(SandStone), 7, 4);
         }
     }
 

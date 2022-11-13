@@ -2,7 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace AncientAliens
+
+namespace AncientAliens.GridSystem
 {
     public class Tile
     {
@@ -11,23 +12,29 @@ namespace AncientAliens
         
 
         public Vector2 index;
-        public Vector3 position;
+        public Vector3 worldPosition;
         public Vector3 center;
-        public bool isLocked;
+        public bool isLocked; // could mean either an obstacle or the tile is full (combining)
 
-        private float size;
+        public int gCost;
+        public int hCost;
+        public Tile parent;
+
+        public int fCost
+        {
+            get { return gCost + hCost; }
+        }
 
 
-        public Tile(Vector2 index, Vector3 position, float size)
+        public Tile(Vector2 index, Vector3 worldPosition, float size, bool locked)
         {
             this.index = index;
-            this.position = position;
-            this.size = size;
-            FindAdjcentTiles();
+            this.worldPosition = worldPosition;
+            isLocked = locked;
 
             tileObjects = new TileObject[2];
 
-            center = new Vector3(position.x + size / 2, 0, position.z + size / 2);
+            center = new Vector3(worldPosition.x + size / 2, 0, worldPosition.z + size / 2);
         }
 
         public Tile GetClosestEmptyTile()
@@ -35,7 +42,7 @@ namespace AncientAliens
 
             // this needs to become recursive
 
-            List<Tile> AdjcentTiles = FindAdjcentTiles();
+            List<Tile> AdjcentTiles = EasyGrid.FindAdjcentTiles(this);
 
             foreach(var tile in AdjcentTiles)
             {
@@ -44,35 +51,6 @@ namespace AncientAliens
             }
 
             return null;
-        }
-
-        private List<Tile> FindAdjcentTiles()
-        {
-            List<Tile> AdjcentTiles = new List<Tile>();
-
-            int Xindex = (int)index.x;
-            int Yindex = (int)index.y;
-
-            for (int x = -1; x <= 1; x++)
-            {
-                for (int y = -1; y <= 1; y++)
-                {
-                    if (x != 0 || y != 0)
-                    {
-                        //Debug.Log((Xindex + x) + ", " + (Yindex + y));
-                        var LocationX = Xindex + x;
-                        var LocationY = Yindex + y;
-
-                        if(Grid.IndexIsInBounds(LocationX, LocationY))
-                        {
-                            AdjcentTiles.Add(Grid.GetTileAt(new Vector2(LocationX, LocationY)));
-                        }
-
-                    }
-                }
-            }
-
-            return AdjcentTiles;
         }
 
         private TileObject PeekAtTopTileObject()
@@ -183,7 +161,7 @@ namespace AncientAliens
 
             if (otherTile != null)
             {
-                return this.position == otherTile.position;
+                return this.worldPosition == otherTile.worldPosition;
             }
             else
             {
@@ -195,7 +173,7 @@ namespace AncientAliens
 
         public override int GetHashCode()
         {
-            return this.position.GetHashCode();
+            return this.worldPosition.GetHashCode();
         }
 
         public override string ToString()

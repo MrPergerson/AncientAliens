@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace AncientAliens
+namespace AncientAliens.GridSystem
 {
     public class GridPlacementTest : MonoBehaviour
     {
@@ -10,7 +10,7 @@ namespace AncientAliens
         {
             if (Input.GetKeyDown(KeyCode.L))
             {
-                transform.position = Grid.SnapToGrid(transform.position);
+                transform.position = EasyGrid.SnapToGrid(transform.position);
             }
         }
     }
