@@ -273,6 +273,53 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 44239381}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &235832789
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 235832791}
+  - component: {fileID: 235832790}
+  m_Layer: 0
+  m_Name: BarbarianTest
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &235832790
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 235832789}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b3c47e7fca473bb4ca2edb76f16ddae6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  barbarian: {fileID: 3193581557163484436, guid: bf007950c13cd4549ab4aaf5a3f0b94e,
+    type: 3}
+  targetIndex: {x: 4, y: 3}
+--- !u!4 &235832791
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 235832789}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 5.896865, y: -1.3345035, z: 5.429367}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &264045277
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1110,6 +1157,7 @@ GameObject:
   - component: {fileID: 1415037322}
   - component: {fileID: 1415037321}
   - component: {fileID: 1415037323}
+  - component: {fileID: 1415037324}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -1175,6 +1223,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TestTileObject1: {fileID: 0}
   TestTileObject2: {fileID: 0}
+--- !u!114 &1415037324
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1415037320}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8db0e97aad8cb54483a8fd672e8360d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  printPath: 0
 --- !u!1001 &1558804235
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1379,7 +1440,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1774863625}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.28, y: 1.93, z: 3.38}
+  m_LocalPosition: {x: 5.56, y: 1.93, z: 5.43}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:

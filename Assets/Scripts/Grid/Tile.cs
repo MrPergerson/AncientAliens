@@ -147,6 +147,25 @@ namespace AncientAliens.GridSystem
 
         }
 
+        public void RemoveTileObject(TileObject tileObject)
+        {
+
+            if(tileObjects[1] == tileObject)
+            {
+                tileObjects[1] = null;
+            }
+            else if(tileObjects[0] == tileObject)
+            {
+                tileObjects[0] = null;
+                if(tileObjects[1] != null)
+                {
+                    tileObjects[0] = tileObjects[1];
+                    tileObjects[1] = null;
+                }
+            }
+
+        }
+
         public void ClearTile()
         {
             tileObjects[0] = null;
@@ -154,6 +173,10 @@ namespace AncientAliens.GridSystem
         }
 
         
+        public bool IsEmpty()
+        {
+            return (tileObjects[0] == null && tileObjects[1] == null);
+        }
 
         public override bool Equals(object obj)
         {
