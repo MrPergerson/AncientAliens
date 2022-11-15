@@ -166,6 +166,24 @@ namespace AncientAliens.GridSystem
 
         }
 
+        public TileObject PeekAtTileObjectOfType(string type)
+        {
+            if (tileObjects[1] != null)
+                return null;
+            else if (tileObjects[0] != null && tileObjects[0].Type == type)
+                return tileObjects[0];
+            else
+                return null;
+        }
+
+        public bool ContainsTileObjectByType(string type)
+        {
+            if (tileObjects[0] != null && tileObjects[0].Type == type) return true;
+            if (tileObjects[1] != null && tileObjects[1].Type == type) return true;
+
+            return false;
+        }
+
         public void ClearTile()
         {
             tileObjects[0] = null;

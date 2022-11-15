@@ -90,7 +90,7 @@ namespace AncientAliens.GridSystem
                     pathToString += " (" + tile.index.x + ", " + tile.index.y + "),";
                 }
                 pathToString += "]\n";
-                print(pathToString);
+                //sprint(pathToString);
             }
 
             return path;

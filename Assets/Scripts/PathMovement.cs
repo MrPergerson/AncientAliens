@@ -36,9 +36,16 @@ namespace AncientAliens
 
                 yield return new WaitForSeconds(1);
 
+                var thisTile = EasyGrid.GetTileAt(transform.position);
+                if (thisTile.ContainsTileObjectByType("People"))
+                    continue;
+
+
                 Tile nextTile = pathToTarget[index];
 
-                if (nextTile.IsEmpty())
+                var hasPeople = nextTile.ContainsTileObjectByType("People");
+
+                if (nextTile.IsEmpty() || (!nextTile.isLocked && hasPeople))
                 {
                     EasyGrid.GetTileAt(transform.position).RemoveTileObject(tileObject);
 
@@ -46,15 +53,11 @@ namespace AncientAliens
 
                     index++;
                 }
-                else
-                {
-                    break;
-                }
 
 
             }
 
-            print("Finished");
+            //print("Finished");
 
         }
     }

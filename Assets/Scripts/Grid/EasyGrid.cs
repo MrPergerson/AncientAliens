@@ -159,6 +159,24 @@ namespace AncientAliens.GridSystem
             return true;
         }
 
+        public static List<TileObject> FindTileObjectsByType(string type)
+        {
+            List<TileObject> list = new List<TileObject>();
+
+            for (int i = 0; i < SizeX; i++)
+            {
+                for (int j = 0; j < SizeY; j++)
+                {
+
+                    var tileObject = Tiles[i, j].PeekAtTileObjectOfType(type);
+                    if (tileObject != null)
+                        list.Add(tileObject);
+                }
+            }
+
+            return list;
+        }
+
         public static bool IndexIsInBounds(float x, float y)
         {
             return ((x >= 0 && x < SizeX) && (y >= 0 && y < SizeY));

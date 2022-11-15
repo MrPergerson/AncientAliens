@@ -29,10 +29,18 @@ namespace AncientAliens
         [SerializeField] GameObject PeopleAndSandStoneCombine;
         [SerializeField] GameObject SandBrickAndWonderCombine;
 
+        List<Tile> _adjacentWonderTiles;
+
         public int WonderBuildProgress
         {
             get { return _wonderBuildProgress; }
             set { _wonderBuildProgress = value; }
+        }
+
+        public List<Tile> AdjacentWonderTiles
+        {
+            get { return _adjacentWonderTiles; }
+            private set { _adjacentWonderTiles = value; }
         }
 
         private void Awake()
@@ -121,9 +129,36 @@ namespace AncientAliens
             EasyGrid.AssignWonderToGrid(wonderObjs, tiles);
         }
 
+        private void SetAdjacentWonderTiles()
+        {
+            var wonderTileObjects = EasyGrid.FindTileObjectsByType("Wonder");
+            AdjacentWonderTiles = new List<Tile>();
+
+            foreach(var tileObjects in wonderTileObjects)
+            {
+                var tile = EasyGrid.GetTileAt(tileObjects.transform.position);
+
+                var adjacentTiles = EasyGrid.FindAdjcentTiles(tile);
+
+                foreach(var adjacentTile in adjacentTiles)
+                {
+                    if(adjacentTile.IsEmpty() && !AdjacentWonderTiles.Contains(adjacentTile))
+                    {
+                        AdjacentWonderTiles.Add(adjacentTile);
+                    }
+
+                }
+            }
+
+            
+        }
+
+
         private void SetUpLevel()
         {
             PlaceWonderInLevel();
+            SetAdjacentWonderTiles();
+
 
             var result1 = EasyGrid.AssignTileObjectToTile(Instantiate(People), 8, 3);
             var result2 = EasyGrid.AssignTileObjectToTile(Instantiate(People), 3, 5);
