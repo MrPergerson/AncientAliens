@@ -28,11 +28,21 @@ namespace AncientAliens.Combinations
             var newTileObject = Instantiate(output, location.center, Quaternion.identity);
             if (newTileObject.TryGetComponent(out TileObject tileObj))
             {
-                location.ClearTile();
+
+                var people = location.ExtractTopTileObject();
+                Destroy(people.gameObject);
+
+                TileObject tileStone = tileObjA.Type == "SandStone" ? tileObjA : tileObjB;
+                tileStone.Value -= 10;
+
+                if(tileStone.Value <= 0)
+                {
+                    location.ExtractTopTileObject();
+                    Destroy(tileStone.gameObject);
+                }
+
                 location.AddTileObject(tileObj);
                 
-                Destroy(tileObjA.gameObject);
-                Destroy(tileObjB.gameObject);
                 Destroy(gameObject);
             }
 

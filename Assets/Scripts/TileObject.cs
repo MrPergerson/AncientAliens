@@ -34,10 +34,10 @@ namespace AncientAliens
             private set { _canShareTile = value; }
         }
 
-        public int value
+        public int Value
         {
             get { return _value; }
-            private set { _value = value; }
+            set { _value = value; }
         }
 
         public Tile Tile
@@ -47,6 +47,18 @@ namespace AncientAliens
             {
                 _tile = value;
             }
+        }
+
+        private void Start()
+        {
+            if (Type == "People")
+                GameManager.Instance.PeopleCount++;
+        }
+
+        private void OnDestroy()
+        {
+            if (Type == "People")
+                GameManager.Instance.PeopleCount--;
         }
 
     }

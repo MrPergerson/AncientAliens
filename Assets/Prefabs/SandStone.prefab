@@ -341,7 +341,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _type: SandStone
   _canBeMoved: 0
-  _value: 50
+  _value: 30
   _canShareTile: 1
 --- !u!1 &5864523371825960099
 GameObject:

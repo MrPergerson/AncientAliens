@@ -63,7 +63,19 @@ namespace AncientAliens
             while(true)
             {
 
+
+                if (GameManager.Instance.GamePaused)
+                {
+                    yield return new WaitForEndOfFrame();
+                    continue;
+                }
+
                 yield return new WaitForSeconds(5);
+
+                if (GameManager.Instance.GamePaused)
+                {
+                    continue;
+                }
 
                 SpawnBarbarian();
             }

@@ -45,7 +45,7 @@ namespace AncientAliens
                 return false;
             }
 
-            var tileObject = tile.ExtractTileObject();
+            var tileObject = tile.ExtractTopTileObject();
 
             if (tileObject == null)
             {

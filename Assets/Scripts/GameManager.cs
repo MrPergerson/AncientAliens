@@ -3,13 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using AncientAliens.Combinations;
 using AncientAliens.GridSystem;
-
+using UnityEngine.InputSystem;
+using AncientAliens.UI;
 
 namespace AncientAliens
 {
     public class GameManager : MonoBehaviour
     {
         public static GameManager Instance;
+
+        [SerializeField] private bool _gamePaused;
 
         [SerializeField] int _wonderBuildProgress = 20;
 
@@ -27,14 +30,41 @@ namespace AncientAliens
         [Header("Combinations")]
         [SerializeField] GameObject PeopleAndPeopleCombine;
         [SerializeField] GameObject PeopleAndSandStoneCombine;
+        [SerializeField] GameObject PeopleAndBarbarianCombine;
         [SerializeField] GameObject SandBrickAndWonderCombine;
 
+        public int _peopleCount = 0;
+
         List<Tile> _adjacentWonderTiles;
+
+        Controls controls;
+
+
 
         public int WonderBuildProgress
         {
             get { return _wonderBuildProgress; }
-            set { _wonderBuildProgress = value; }
+            set 
+            { 
+                _wonderBuildProgress = value;
+
+                if (_wonderBuildProgress >= 100)
+                    GameWin();
+                else if (_wonderBuildProgress <= 0)
+                    GameLost();
+            }
+        }
+
+        public int PeopleCount
+        {
+            get { return _peopleCount; }
+            set
+            {
+                _peopleCount = value;
+
+                if (PeopleCount <= 0)
+                    GameLost();
+            }
         }
 
         public List<Tile> AdjacentWonderTiles
@@ -43,10 +73,30 @@ namespace AncientAliens
             private set { _adjacentWonderTiles = value; }
         }
 
+        public bool GamePaused
+        {
+            get { return _gamePaused; }
+            set { _gamePaused = value; }
+        }
+
+        private void OnEnable()
+        {
+            controls.Enable();
+
+            controls.Player.Menu.performed += SetMenuState;
+        }
+
+        private void OnDisable()
+        {
+            controls.Disable();
+
+            controls.Player.Menu.performed -= SetMenuState;
+        }
+
         private void Awake()
         {
 
-            if(Instance != null && Instance != this)
+            if (Instance != null && Instance != this)
             {
                 Destroy(this);
             }
@@ -55,12 +105,36 @@ namespace AncientAliens
                 Instance = this;
             }
 
-             EasyGrid.InitializeGrid(tileSize, gridSizeX, gridSizeZ);
+            controls = new Controls();
+
+            EasyGrid.InitializeGrid(tileSize, gridSizeX, gridSizeZ);
 
             SetUpLevel();
             //var result2 = Grid.AssignTileObjectToTile(Instantiate(People), 3, 5);
             //print(result2);
 
+        }
+
+        private void SetMenuState(InputAction.CallbackContext ctx)
+        {
+            if (GamePaused)
+                CloseMenu();
+            else
+                OpenMenu();
+        }
+
+        public void OpenMenu()
+        {
+            GamePaused = true;
+            UIManager.Instance.OpenPauseMenu();
+            Time.timeScale = 0;
+        }
+
+        public void CloseMenu()
+        {
+            GamePaused = false;
+            Time.timeScale = 1;
+            UIManager.Instance.CloseMenus();
         }
 
         public void Combine(TileObject a, TileObject b, Tile location)
@@ -107,6 +181,22 @@ namespace AncientAliens
                 else { Debug.LogError("Missing class"); }
             }
 
+            if (types.Contains("Barbarian") && types.Contains("People"))
+            {
+                var combineObj = Instantiate(PeopleAndBarbarianCombine);
+                if (combineObj.TryGetComponent(out PeopleAndBarbarianCombine combine))
+                {
+                    combine.Execute(a, b, location);
+                    success = true;
+                }
+                else { Debug.LogError("Missing class"); }
+            }
+
+            if (types.Contains("SandStone") && types.Contains("SandBrick"))
+            {
+                success = true; // ignore
+            }
+
             if (success == false) print("Unable to combine " + types.ToString());
 
         }
@@ -121,10 +211,10 @@ namespace AncientAliens
                 wonderObjs[i] = Instantiate(Wonder);
             }
 
-            tiles[0] = new Vector2(2, 4);
-            tiles[1] = new Vector2(3, 4);
-            tiles[2] = new Vector2(2, 3);
-            tiles[3] = new Vector2(3, 3);
+            tiles[0] = new Vector2(7, 8);
+            tiles[1] = new Vector2(8, 8);
+            tiles[2] = new Vector2(7, 7);
+            tiles[3] = new Vector2(8, 7);
 
             EasyGrid.AssignWonderToGrid(wonderObjs, tiles);
         }
@@ -134,15 +224,15 @@ namespace AncientAliens
             var wonderTileObjects = EasyGrid.FindTileObjectsByType("Wonder");
             AdjacentWonderTiles = new List<Tile>();
 
-            foreach(var tileObjects in wonderTileObjects)
+            foreach (var tileObjects in wonderTileObjects)
             {
                 var tile = EasyGrid.GetTileAt(tileObjects.transform.position);
 
                 var adjacentTiles = EasyGrid.FindAdjcentTiles(tile);
 
-                foreach(var adjacentTile in adjacentTiles)
+                foreach (var adjacentTile in adjacentTiles)
                 {
-                    if(adjacentTile.IsEmpty() && !AdjacentWonderTiles.Contains(adjacentTile))
+                    if (adjacentTile.IsEmpty() && !AdjacentWonderTiles.Contains(adjacentTile))
                     {
                         AdjacentWonderTiles.Add(adjacentTile);
                     }
@@ -150,9 +240,8 @@ namespace AncientAliens
                 }
             }
 
-            
-        }
 
+        }
 
         private void SetUpLevel()
         {
@@ -164,8 +253,22 @@ namespace AncientAliens
             var result2 = EasyGrid.AssignTileObjectToTile(Instantiate(People), 3, 5);
             var result3 = EasyGrid.AssignTileObjectToTile(Instantiate(People), 6, 5);
 
-            var result4 = EasyGrid.AssignTileObjectToTile(Instantiate(SandStone), 8, 8);
+            var result4 = EasyGrid.AssignTileObjectToTile(Instantiate(SandStone), 10, 8);
             var result5 = EasyGrid.AssignTileObjectToTile(Instantiate(SandStone), 7, 4);
+            var result6 = EasyGrid.AssignTileObjectToTile(Instantiate(SandStone), 5, 10);
+            var result7 = EasyGrid.AssignTileObjectToTile(Instantiate(SandStone), 4, 7);
+        }
+
+        private void GameWin()
+        {
+            GamePaused = true;
+            UIManager.Instance.OpenWinScreen();
+        }
+
+        private void GameLost()
+        {
+            GamePaused = true;
+            UIManager.Instance.OpenLoseScreen();
         }
     }
 

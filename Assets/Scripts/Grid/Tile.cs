@@ -132,7 +132,7 @@ namespace AncientAliens.GridSystem
             return true;
         }
 
-        public TileObject ExtractTileObject()
+        public TileObject ExtractTopTileObject()
         {
             
             var tileObject = PeekAtTopTileObject();

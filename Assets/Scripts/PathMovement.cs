@@ -10,7 +10,12 @@ namespace AncientAliens
     {
         private Pathfinding pathfinding;
         List<Tile> pathToTarget;
-        [SerializeField] TileObject tileObject; 
+        [SerializeField] TileObject tileObject;
+        public bool pathReached;
+
+        public delegate void PathReached();
+        public event PathReached onPathReached;
+
 
         private void Awake()
         {
@@ -29,12 +34,24 @@ namespace AncientAliens
         {
             //Tile currentTile = EasyGrid.GetTileAt(transform.position);
             int index = 0;
+            pathReached = false;
 
             while(index < pathToTarget.Count)
             {
                 //currentTile = EasyGrid.GetTileAt(transform.position);
 
-                yield return new WaitForSeconds(1);
+                if (GameManager.Instance.GamePaused)
+                {
+                    yield return new WaitForEndOfFrame();
+                    continue;
+                }
+
+                yield return new WaitForSeconds(2);
+
+                if (GameManager.Instance.GamePaused)
+                {
+                    continue;
+                }
 
                 var thisTile = EasyGrid.GetTileAt(transform.position);
                 if (thisTile.ContainsTileObjectByType("People"))
@@ -56,6 +73,9 @@ namespace AncientAliens
 
 
             }
+
+            pathReached = true;
+            onPathReached?.Invoke();
 
             //print("Finished");
 

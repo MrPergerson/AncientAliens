@@ -26,9 +26,9 @@ namespace AncientAliens.Combinations
 
             location.isLocked = false;
 
-            GameManager.Instance.WonderBuildProgress += 20;
+            GameManager.Instance.WonderBuildProgress += 10;
 
-            var sandBrick = location.ExtractTileObject(); // assuming sandbrick was placed on the top
+            var sandBrick = location.ExtractTopTileObject(); // assuming sandbrick was placed on the top
             //print(sandBrick.Type);
 
             Destroy(sandBrick.gameObject);
