@@ -49,6 +49,7 @@ MonoBehaviour:
   _canBeMoved: 0
   _value: 0
   _canShareTile: 1
+  playsSound: 0
 --- !u!1 &7790983696708176577
 GameObject:
   m_ObjectHideFlags: 0
@@ -67,7 +68,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &5779418219521914431
 Transform:
   m_ObjectHideFlags: 0
