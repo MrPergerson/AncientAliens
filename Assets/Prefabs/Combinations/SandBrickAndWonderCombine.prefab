@@ -47,3 +47,4 @@ MonoBehaviour:
   tileObjA: {fileID: 0}
   tileObjB: {fileID: 0}
   output: {fileID: 0}
+  combineTime: 0.1

@@ -2,11 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using AncientAliens.GridSystem;
+using UnityEngine.UI;
 
 namespace AncientAliens
 {
     public class PeopleAndPeopleCombine : TileObjectCombine
     {
+
+
+
 
         public override void Execute(TileObject a, TileObject b, Tile location)
         {
@@ -17,6 +21,7 @@ namespace AncientAliens
             location.isLocked = true;
 
             StartCoroutine(ProcessCombineAction());
+            StartCoroutine(CombineTimer());
         }
 
         protected override IEnumerator ProcessCombineAction()
@@ -47,6 +52,8 @@ namespace AncientAliens
 
 
         }
+
+
     
     }
 }

@@ -16,11 +16,12 @@ namespace AncientAliens.Combinations
             location.isLocked = true;
 
             StartCoroutine(ProcessCombineAction());
+            StartCoroutine(CombineTimer());
         }
 
         protected override IEnumerator ProcessCombineAction()
         {
-            yield return new WaitForSeconds(2);
+            yield return new WaitForSeconds(combineTime);
 
             location.isLocked = false;
 

@@ -9,6 +9,8 @@ namespace AncientAliens
     {
         [SerializeField] GameObject barbarian;
 
+        [SerializeField] int spawnRate = 10;
+
         private void Start()
         {
             StartCoroutine(SpawnBarbariansOverTime());
@@ -70,7 +72,7 @@ namespace AncientAliens
                     continue;
                 }
 
-                yield return new WaitForSeconds(5);
+                yield return new WaitForSeconds(spawnRate);
 
                 if (GameManager.Instance.GamePaused)
                 {
