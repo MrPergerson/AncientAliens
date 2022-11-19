@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 2839983425918972406}
   - component: {fileID: 3193581557163484434}
   - component: {fileID: 3193581557163484437}
+  - component: {fileID: 1244108507933674384}
   m_Layer: 0
   m_Name: BarbarianTileObject
   m_TagString: TileObject
@@ -57,6 +58,7 @@ MonoBehaviour:
   _canBeMoved: 0
   _value: 10
   _canShareTile: 1
+  playsSound: 0
 --- !u!114 &2839983425918972406
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -96,6 +98,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tileObject: {fileID: 0}
   pathReached: 0
+--- !u!114 &1244108507933674384
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3193581557163484436}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b28d6a4994885549985c0c13bf72827, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SFX_Mixer: {fileID: -6493204333896640244, guid: 310d9dd518e2e1a4b849b7b58d9fdab4,
+    type: 2}
+  SFX_OnCreate: {fileID: 8300000, guid: 72e273d60a80059469d2103bfc458682, type: 3}
+  SFX_OnDestroy: {fileID: 0}
+  SFX_OnMove: {fileID: 0}
 --- !u!1 &3193581557176677582
 GameObject:
   m_ObjectHideFlags: 0

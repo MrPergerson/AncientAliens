@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using AncientAliens.GridSystem;
-
+using AncientAliens.TileObjects;
 
 namespace AncientAliens.Combinations
 {
@@ -17,8 +17,14 @@ namespace AncientAliens.Combinations
             location.isLocked = true;
 
             StartCoroutine(ProcessCombineAction());
-            
-        }
+
+            // One sound being used for this tile is the StartSFX
+            if (playsSound)
+            {
+                soundPlayer.PlayCombineStartSFX();
+            }
+
+    }
 
         protected override IEnumerator ProcessCombineAction()
         {

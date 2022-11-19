@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using AncientAliens.GridSystem;
+using AncientAliens.TileObjects;
 
 namespace AncientAliens.Combinations
 {
@@ -17,6 +18,12 @@ namespace AncientAliens.Combinations
 
             StartCoroutine(ProcessCombineAction());
             StartCoroutine(CombineTimer());
+
+            if (playsSound)
+            {
+                soundPlayer.PlayCombineStartSFX();
+                soundPlayer.PlayCombineLoopSFX();
+            }
         }
 
         protected override IEnumerator ProcessCombineAction()
@@ -43,8 +50,16 @@ namespace AncientAliens.Combinations
                 }
 
                 location.AddTileObject(tileObj);
-                
-                Destroy(gameObject);
+
+                if (playsSound)
+                {
+                    soundPlayer.StopCombineLoopSFX();
+                    soundPlayer.PlayCombineEndSFX();
+                }
+
+                HideTimer();
+
+                Destroy(gameObject, 2);
             }
 
 

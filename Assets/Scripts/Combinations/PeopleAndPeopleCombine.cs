@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using AncientAliens.GridSystem;
 using UnityEngine.UI;
+using AncientAliens.TileObjects;
 
-namespace AncientAliens
+namespace AncientAliens.Combinations
 {
     public class PeopleAndPeopleCombine : TileObjectCombine
     {
@@ -22,6 +23,13 @@ namespace AncientAliens
 
             StartCoroutine(ProcessCombineAction());
             StartCoroutine(CombineTimer());
+
+            if (playsSound)
+            {
+                soundPlayer.PlayCombineStartSFX();
+                soundPlayer.PlayCombineLoopSFX();
+            }
+
         }
 
         protected override IEnumerator ProcessCombineAction()
@@ -47,7 +55,19 @@ namespace AncientAliens
                 if (tile2 != null) tile2.AddTileObject(tileObjB);
                 else Destroy(tileObjB.gameObject);
 
-                Destroy(gameObject);
+                if (playsSound)
+                {
+                    soundPlayer.StopCombineLoopSFX();
+                    soundPlayer.PlayCombineEndSFX();
+                }
+
+                HideTimer();
+
+                Destroy(gameObject, 2);
+
+                
+
+
             }
 
 

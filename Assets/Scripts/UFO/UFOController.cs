@@ -26,10 +26,23 @@ namespace AncientAliens.UFO
 
         private void Start()
         {
-            soundPlayer.PlayAMB(soundPlayer.AMB_UFO_Idle);
+            soundPlayer.PlayAMB01(soundPlayer.AMB_UFO_Idle);
+            soundPlayer.PlayAMB02(soundPlayer.AMB_UFO_Flyaround);
 
-            simpleMove.onStartedMoving += () => { soundPlayer.PlayAMB(soundPlayer.AMB_UFO_Flyaround); };
-            simpleMove.onStoppedMoving += () => { soundPlayer.PlayAMB(soundPlayer.AMB_UFO_Idle); };
+            simpleMove.onStartedMoving += StartedMoving;
+            simpleMove.onStoppedMoving += StoppedMoving;
+        }
+
+        private void StartedMoving()
+        {
+            //soundPlayer.
+            soundPlayer.MuteAMB02(false);
+            
+        }
+
+        private void StoppedMoving()
+        {
+            soundPlayer.MuteAMB02(true);
         }
 
         private void OnEnable()

@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2007552888071106074}
   - component: {fileID: 6174223784738968779}
+  - component: {fileID: -7523874788887097875}
   m_Layer: 0
   m_Name: PeopleAndBarbarianCombine
   m_TagString: Untagged
@@ -48,6 +49,26 @@ MonoBehaviour:
   tileObjA: {fileID: 0}
   tileObjB: {fileID: 0}
   output: {fileID: 0}
+  combineTime: 2
+  playsSound: 0
+--- !u!114 &-7523874788887097875
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1110252044740406363}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b975e7462f8378b4b871426dd51b5ec7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SFX_Mixer: {fileID: -6493204333896640244, guid: 310d9dd518e2e1a4b849b7b58d9fdab4,
+    type: 2}
+  SFX_CombineStart: {fileID: 0}
+  SFX_CombineLoop: {fileID: 0}
+  SFX_CombineEnd: {fileID: 0}
+  SFX_CombineCancel: {fileID: 0}
 --- !u!1 &2258636764007319514
 GameObject:
   m_ObjectHideFlags: 0

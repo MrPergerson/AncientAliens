@@ -5,7 +5,7 @@ using UnityEngine;
 using AncientAliens.GridSystem;
 
 
-namespace AncientAliens
+namespace AncientAliens.TileObjects
 {
     public class TileObject : MonoBehaviour
     {
@@ -16,6 +16,9 @@ namespace AncientAliens
         [SerializeField] int _value = 1;
         [SerializeField] bool _canShareTile = true;
         [SerializeField] enum CombineMethod { SameTile, AdjcentTile };
+
+        TileObjectSoundPlayer soundPlayer;
+        [SerializeField] protected bool playsSound;
 
         public string Type
         {
@@ -49,16 +52,31 @@ namespace AncientAliens
             }
         }
 
+        private void Awake()
+        {
+            if(TryGetComponent(out TileObjectSoundPlayer soundPlayer))
+            {
+                this.soundPlayer = soundPlayer;
+                playsSound = true;
+            }
+        }
+
         private void Start()
         {
             if (Type == "People")
                 GameManager.Instance.PeopleCount++;
+
+            if (playsSound)
+                soundPlayer.PlayOnCreateSFX();
         }
 
         private void OnDestroy()
         {
             if (Type == "People")
                 GameManager.Instance.PeopleCount--;
+
+            if (playsSound)
+                soundPlayer.PlayOnDestroySFX();
         }
 
     }

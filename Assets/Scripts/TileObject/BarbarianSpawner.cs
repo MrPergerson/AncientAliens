@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using AncientAliens.GridSystem;
 
-namespace AncientAliens
+namespace AncientAliens.TileObjects
 {
     public class BarbarianSpawner : MonoBehaviour
     {

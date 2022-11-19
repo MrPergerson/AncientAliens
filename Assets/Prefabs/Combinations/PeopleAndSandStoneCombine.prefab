@@ -187,6 +187,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3515477913227128850}
   - component: {fileID: 3515477913227128861}
+  - component: {fileID: 967916490969163115}
   m_Layer: 0
   m_Name: PeopleAndSandStoneCombine
   m_TagString: Combine
@@ -225,3 +226,26 @@ MonoBehaviour:
   tileObjA: {fileID: 0}
   tileObjB: {fileID: 0}
   output: {fileID: 2966114659223284263, guid: e01a38f4929881e438a0c1af3c810c9d, type: 3}
+  combineTime: 2
+  playsSound: 0
+--- !u!114 &967916490969163115
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3515477913227128860}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b975e7462f8378b4b871426dd51b5ec7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SFX_Mixer: {fileID: -6493204333896640244, guid: 310d9dd518e2e1a4b849b7b58d9fdab4,
+    type: 2}
+  SFX_CombineStart: {fileID: 0}
+  SFX_CombineEnd: {fileID: 0}
+  SFX_CombineCancel: {fileID: 0}
+  SFX_Combine:
+  - {fileID: 8300000, guid: 03166c6c89d48be48a128870f833eaf4, type: 3}
+  - {fileID: 8300000, guid: 88ac7bc32005a7541bea50e0de3f745a, type: 3}
+  - {fileID: 8300000, guid: 5e0cff73916356c4dabcf042b8323aeb, type: 3}

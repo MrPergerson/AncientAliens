@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using AncientAliens.GridSystem;
 using UnityEngine.UI;
+using AncientAliens.TileObjects;
 
-namespace AncientAliens
+namespace AncientAliens.Combinations
 {
     public abstract class TileObjectCombine : MonoBehaviour
     {
@@ -16,9 +17,18 @@ namespace AncientAliens
         protected Image progressGraphic;
         protected float starttime;
 
+        protected CombineSoundPlayer soundPlayer;
+        [SerializeField] protected bool playsSound;
+
         protected virtual void Awake()
         {
             progressGraphic = GetComponentInChildren<Image>();
+           
+            if(TryGetComponent(out CombineSoundPlayer soundPlayer))
+            {
+                this.soundPlayer = soundPlayer;
+                playsSound = true;
+            }
 
         }
 
@@ -28,6 +38,9 @@ namespace AncientAliens
         {
             StopAllCoroutines();
             location.isLocked = false;
+            
+            if (playsSound)
+                soundPlayer.PlayCombineCancelSFX();
         }
 
         protected abstract IEnumerator ProcessCombineAction();
@@ -43,6 +56,11 @@ namespace AncientAliens
                 yield return new WaitForEndOfFrame();
 
             }
+        }
+
+        protected virtual void HideTimer()
+        {
+            progressGraphic.gameObject.SetActive(false);
         }
     }
 
