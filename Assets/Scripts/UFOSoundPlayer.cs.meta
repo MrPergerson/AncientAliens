@@ -3,7 +3,13 @@ guid: 3c341d974ff21de49ad0c459c72acbe1
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - AMB_Mixer: {instanceID: 0}
+  - SFX_Mixer: {instanceID: 0}
+  - AMB_UFO_Flyaround: {fileID: 8300000, guid: b5f6a12c7409c7140b509c35ead5f37b, type: 3}
+  - AMB_UFO_Idle: {fileID: 8300000, guid: 73902c0f3957647488cf0b5821a8528f, type: 3}
+  - SFX_Drop: {instanceID: 0}
+  - SFX_Pickup: {fileID: 8300000, guid: 452cfa6d1207cce42bc69fa222cd5f39, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
