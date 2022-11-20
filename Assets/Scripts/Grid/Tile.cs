@@ -115,12 +115,6 @@ namespace AncientAliens.GridSystem
 
             if (GetTileObjectCount() >= 2) return false;
 
-            if(GetTileObjectCount() == 1)
-            {
-                var canShare = PeekAtTopTileObject().CanShareTile;
-                if (!canShare) return false;
-            }
-
             PushNewTileObject(obj);
             obj.transform.position = center; // tractor beam also sets position
 

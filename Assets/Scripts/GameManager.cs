@@ -14,6 +14,7 @@ namespace AncientAliens
         public static GameManager Instance;
 
         [SerializeField] private bool _gamePaused;
+        [SerializeField] private bool _gameOver;
 
         [SerializeField] int _wonderBuildProgress = 20;
 
@@ -51,9 +52,9 @@ namespace AncientAliens
             { 
                 _wonderBuildProgress = value;
 
-                if (_wonderBuildProgress >= 100)
+                if (!GameOver && _wonderBuildProgress >= GameRules.maxWonderProgress)
                     GameWin();
-                else if (_wonderBuildProgress <= 0)
+                else if (!GameOver && _wonderBuildProgress <= 0)
                     GameLost();
             }
         }
@@ -65,9 +66,15 @@ namespace AncientAliens
             {
                 _peopleCount = value;
 
-                if (PeopleCount <= 0)
+                if (!GameOver && PeopleCount <= 0)
                     GameLost();
             }
+        }
+
+        public bool GameOver
+        {
+            get { return _gameOver; }
+            private set { _gameOver = value; }
         }
 
         public List<Tile> AdjacentWonderTiles
@@ -108,9 +115,12 @@ namespace AncientAliens
                 Instance = this;
             }
 
+            GameOver = false;
+
             controls = new Controls();
 
             EasyGrid.InitializeGrid(tileSize, gridSizeX, gridSizeZ);
+
 
             SetUpLevel();
             //var result2 = Grid.AssignTileObjectToTile(Instantiate(People), 3, 5);
@@ -288,12 +298,14 @@ namespace AncientAliens
         {
             GamePaused = true;
             UIManager.Instance.OpenWinScreen();
+            GameOver = true;
         }
 
         private void GameLost()
         {
             GamePaused = true;
             UIManager.Instance.OpenLoseScreen();
+            GameOver = true;
         }
     }
 

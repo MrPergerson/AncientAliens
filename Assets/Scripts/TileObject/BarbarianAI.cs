@@ -7,6 +7,7 @@ namespace AncientAliens.TileObjects
     public class BarbarianAI : MonoBehaviour
     {
         PathMovement path;
+        public bool isCombining;
 
         private void Awake()
         {
@@ -35,14 +36,14 @@ namespace AncientAliens.TileObjects
                     continue;
                 }
 
-                yield return new WaitForSeconds(2);
+                yield return new WaitForSeconds(GameRules.barbarianActionTick);
 
-                if (GameManager.Instance.GamePaused)
+                if (GameManager.Instance.GamePaused || isCombining)
                 {
                     continue;
                 }
 
-                GameManager.Instance.WonderBuildProgress -= 5;
+                GameManager.Instance.WonderBuildProgress -= GameRules.damageToWonder;
 
             }
         }

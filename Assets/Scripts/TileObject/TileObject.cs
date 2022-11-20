@@ -13,9 +13,7 @@ namespace AncientAliens.TileObjects
         [SerializeField] Tile _tile;
         //TileObjectRules rules;
         [SerializeField] bool _canBeMoved = true;
-        [SerializeField] int _value = 1;
-        [SerializeField] bool _canShareTile = true;
-        [SerializeField] enum CombineMethod { SameTile, AdjcentTile };
+        int _value = 1;
 
         TileObjectSoundPlayer soundPlayer;
         [SerializeField] protected bool playsSound;
@@ -29,12 +27,6 @@ namespace AncientAliens.TileObjects
         public bool CanBeMoved {
             get { return _canBeMoved; }
             private set { _canBeMoved = value; }
-        }
-
-        public bool CanShareTile
-        {
-            get { return _canShareTile; }
-            private set { _canShareTile = value; }
         }
 
         public int Value
@@ -63,20 +55,42 @@ namespace AncientAliens.TileObjects
 
         private void Start()
         {
-            if (Type == "People")
-                GameManager.Instance.PeopleCount++;
+
+            switch(Type)
+            {
+                case "People":
+                    GameManager.Instance.PeopleCount++;
+                    Value = GameRules.peopleValue;
+                    break;
+                case "SandStone":
+                    Value = GameRules.rockValue;
+                    break;
+                case "SandBrick":
+                    Value = GameRules.brickValue;
+                    break;
+                case "Barbarian":
+                    Value = GameRules.barbarianValue;
+                    break;
+                case "City":
+                    Value = GameRules.cityValue;
+                    break;
+            }
+
 
             if (playsSound)
                 soundPlayer.PlayOnCreateSFX();
         }
 
-        private void OnDestroy()
+        public void DestroySelf()
         {
+
             if (Type == "People")
                 GameManager.Instance.PeopleCount--;
 
             if (playsSound)
                 soundPlayer.PlayOnDestroySFX();
+
+            Destroy(this.gameObject);
         }
 
     }

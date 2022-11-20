@@ -20,6 +20,7 @@ namespace AncientAliens.Combinations
             this.location = location;
             transform.position = location.center;
             location.isLocked = true;
+            combineTime = GameRules.peopleAndPeopleCombineTime;
 
             StartCoroutine(ProcessCombineAction());
             StartCoroutine(CombineTimer());
@@ -49,11 +50,11 @@ namespace AncientAliens.Combinations
                 // This is not intended design, but a temporary solution
                 var tile1 = location.GetClosestEmptyTile();
                 if (tile1 != null) tile1.AddTileObject(tileObjA);
-                else Destroy(tileObjA.gameObject); 
+                else tileObjA.DestroySelf();
 
                 var tile2 = location.GetClosestEmptyTile();
                 if (tile2 != null) tile2.AddTileObject(tileObjB);
-                else Destroy(tileObjB.gameObject);
+                else tileObjB.DestroySelf();
 
                 if (playsSound)
                 {

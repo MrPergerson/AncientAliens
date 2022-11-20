@@ -8,6 +8,10 @@ namespace AncientAliens.Combinations
 {
     public class PeopleAndBarbarianCombine : TileObjectCombine
     {
+
+        BarbarianAI barbarianAI;
+
+
         public override void Execute(TileObject a, TileObject b, Tile location)
         {
             tileObjA = a;
@@ -15,6 +19,17 @@ namespace AncientAliens.Combinations
             this.location = location;
             transform.position = location.center;
             location.isLocked = true;
+            combineTime = GameRules.peopleAndBarbarianCombineTime;
+
+            var barbarian = tileObjA.Type == "Barbarian" ? tileObjA : tileObjB;
+
+            if(barbarian.TryGetComponent(out BarbarianAI barbarianAI))
+            {
+                this.barbarianAI = barbarianAI;
+            } else { Debug.LogError("TileObject is missing barbarianAI component"); }
+
+            barbarianAI.isCombining = true;
+
 
             StartCoroutine(ProcessCombineAction());
             StartCoroutine(CombineTimer());
@@ -31,8 +46,9 @@ namespace AncientAliens.Combinations
             yield return new WaitForSeconds(combineTime);
 
             location.isLocked = false;
+            barbarianAI.isCombining = false;
 
-            if(tileObjA.Type == "People")
+            if (tileObjA.Type == "People")
             {
                 tileObjA.Value -= 5;
                 tileObjB.Value -= 10;
@@ -46,12 +62,12 @@ namespace AncientAliens.Combinations
             if(tileObjA.Value <= 0)
             {
                 location.RemoveTileObject(tileObjA);
-                Destroy(tileObjA.gameObject);
+                tileObjA.DestroySelf();
             }
             if (tileObjB.Value <= 0)
             {
                 location.RemoveTileObject(tileObjB);
-                Destroy(tileObjB.gameObject);
+                tileObjB.DestroySelf();
             }
 
             if (playsSound)

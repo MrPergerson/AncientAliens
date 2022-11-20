@@ -38,7 +38,7 @@ namespace AncientAliens.Combinations
             var sandBrick = location.ExtractTopTileObject(); // assuming sandbrick was placed on the top
             //print(sandBrick.Type);
 
-            Destroy(sandBrick.gameObject);
+            sandBrick.DestroySelf();
             Destroy(gameObject);
 
 

@@ -15,6 +15,7 @@ namespace AncientAliens.Combinations
             this.location = location;
             transform.position = location.center;
             location.isLocked = true;
+            combineTime = GameRules.peopleAndBrickCombineTime;
 
             StartCoroutine(ProcessCombineAction());
             StartCoroutine(CombineTimer());
@@ -38,8 +39,8 @@ namespace AncientAliens.Combinations
             {
 
                 location.ClearTile();
-                Destroy(tileObjA.gameObject);
-                Destroy(tileObjB.gameObject);
+                tileObjA.DestroySelf();
+                tileObjB.DestroySelf();
 
                 location.AddTileObject(tileObj);
 

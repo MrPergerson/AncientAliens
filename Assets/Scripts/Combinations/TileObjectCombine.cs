@@ -9,11 +9,11 @@ namespace AncientAliens.Combinations
 {
     public abstract class TileObjectCombine : MonoBehaviour
     {
-        [SerializeField] protected TileObject tileObjA;
-        [SerializeField] protected TileObject tileObjB;
+        protected TileObject tileObjA;
+        protected TileObject tileObjB;
         [SerializeField] protected GameObject output;
-        [SerializeField] protected Tile location;
-        [SerializeField] protected float combineTime = 2;
+        protected Tile location;
+        protected float combineTime = 1;
         protected Image progressGraphic;
         protected float starttime;
 

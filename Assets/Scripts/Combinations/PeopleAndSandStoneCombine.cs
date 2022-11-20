@@ -16,6 +16,8 @@ namespace AncientAliens.Combinations
             transform.position = location.center;
             location.isLocked = true;
 
+            combineTime = GameRules.peopleAndRockCombineTIme;
+
             StartCoroutine(ProcessCombineAction());
             StartCoroutine(CombineTimer());
 
@@ -38,7 +40,7 @@ namespace AncientAliens.Combinations
             {
 
                 var people = location.ExtractTopTileObject();
-                Destroy(people.gameObject);
+                people.DestroySelf();
 
                 TileObject tileStone = tileObjA.Type == "SandStone" ? tileObjA : tileObjB;
                 tileStone.Value -= 10;
@@ -46,7 +48,7 @@ namespace AncientAliens.Combinations
                 if(tileStone.Value <= 0)
                 {
                     location.ExtractTopTileObject();
-                    Destroy(tileStone.gameObject);
+                    tileStone.DestroySelf();
                 }
 
                 location.AddTileObject(tileObj);

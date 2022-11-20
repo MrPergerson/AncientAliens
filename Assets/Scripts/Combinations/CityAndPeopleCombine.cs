@@ -15,6 +15,7 @@ namespace AncientAliens.Combinations
             this.location = location;
             transform.position = location.center;
             location.isLocked = true;
+            combineTime = GameRules.cityAndPeopleCombineTime;
 
             StartCoroutine(ProcessCombineAction());
             StartCoroutine(CombineTimer());
@@ -41,7 +42,7 @@ namespace AncientAliens.Combinations
                 // This is not intended design, but a temporary solution
                 var tile1 = location.GetClosestEmptyTile();
                 if (tile1 != null) tile1.AddTileObject(tileObjOutput1);
-                else Destroy(tileObjOutput1.gameObject);
+                else tileObjOutput1.DestroySelf();
 
             }
 
@@ -50,7 +51,7 @@ namespace AncientAliens.Combinations
             {
                 var tile1 = location.GetClosestEmptyTile();
                 if (tile1 != null) tile1.AddTileObject(tileObjOutput2);
-                else Destroy(tileObjOutput2.gameObject);
+                else tileObjOutput2.DestroySelf();
 
 
 
