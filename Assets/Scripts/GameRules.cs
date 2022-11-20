@@ -11,6 +11,11 @@ namespace AncientAliens
         public static int maxWonderProgress = 100;
         public static int brickProgressValue = 10;
 
+        //UFO
+        public static float ufoMaxSpeed = 3.4f;
+        public static float ufoCurrentSpeed = 0;
+        public static float ufoSandBrickSlowDown = 0.5f;
+
         // TileObjects
         public static int peopleValue = 10;
         public static int rockValue = 10;

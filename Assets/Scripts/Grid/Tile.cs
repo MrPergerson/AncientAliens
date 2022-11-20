@@ -54,7 +54,7 @@ namespace AncientAliens.GridSystem
             return null;
         }
 
-        private TileObject PeekAtTopTileObject()
+        public TileObject PeekAtTopTileObject()
         {
             // 0 bottom
             // 1 top
@@ -112,7 +112,6 @@ namespace AncientAliens.GridSystem
 
         public bool AddTileObject(TileObject obj)
         {
-
             if (GetTileObjectCount() >= 2) return false;
 
             PushNewTileObject(obj);
