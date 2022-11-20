@@ -25,13 +25,15 @@ namespace AncientAliens
         [SerializeField] GameObject People;
         [SerializeField] GameObject SandStone;
         [SerializeField] GameObject SandBrick;
-        [SerializeField] GameObject Barbarian;
+        [SerializeField] GameObject City;
         [SerializeField] GameObject Wonder;
 
         [Header("Combinations")]
         [SerializeField] GameObject PeopleAndPeopleCombine;
         [SerializeField] GameObject PeopleAndSandStoneCombine;
         [SerializeField] GameObject PeopleAndBarbarianCombine;
+        [SerializeField] GameObject PeopleAndSandBrickCombine;
+        [SerializeField] GameObject CityAndPeopleCombine;
         [SerializeField] GameObject SandBrickAndWonderCombine;
 
         public int _peopleCount = 0;
@@ -175,6 +177,28 @@ namespace AncientAliens
 
                 var combineObj = Instantiate(SandBrickAndWonderCombine);
                 if (combineObj.TryGetComponent(out SandBrickAndWonderCombine combine))
+                {
+                    combine.Execute(a, b, location);
+                    success = true;
+                }
+                else { Debug.LogError("Missing class"); }
+            }
+
+            if (types.Contains("People") && types.Contains("SandBrick"))
+            {
+                var combineObj = Instantiate(PeopleAndSandBrickCombine);
+                if (combineObj.TryGetComponent(out PeopleAndSandBrickCombine combine))
+                {
+                    combine.Execute(a, b, location);
+                    success = true;
+                }
+                else { Debug.LogError("Missing class"); }
+            }
+
+            if (types.Contains("City") && types.Contains("People"))
+            {
+                var combineObj = Instantiate(CityAndPeopleCombine);
+                if (combineObj.TryGetComponent(out CityAndPeopleCombine combine))
                 {
                     combine.Execute(a, b, location);
                     success = true;
