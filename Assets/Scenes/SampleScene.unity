@@ -2858,6 +2858,38 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &1361849169
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1361849170}
+  m_Layer: 0
+  m_Name: Ambient Audio Source
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1361849170
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1361849169}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 8.870765, y: -1.6687235, z: 7.634186}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1451431321}
+  m_Father: {fileID: 0}
+  m_RootOrder: 14
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1363066357
 GameObject:
   m_ObjectHideFlags: 0
@@ -3276,7 +3308,7 @@ MonoBehaviour:
     type: 3}
   SandBrick: {fileID: 2966114659223284263, guid: e01a38f4929881e438a0c1af3c810c9d,
     type: 3}
-  Barbarian: {fileID: 0}
+  City: {fileID: 0}
   Wonder: {fileID: 7508436000111954363, guid: 40d56e7dd9dd66e42a5af8232ddef514, type: 3}
   PeopleAndPeopleCombine: {fileID: 7495084756260361130, guid: 6660895b4960a7c49a949b8a31360701,
     type: 3}
@@ -3284,6 +3316,8 @@ MonoBehaviour:
     type: 3}
   PeopleAndBarbarianCombine: {fileID: 1110252044740406363, guid: 56bbfd2cfca6e0446a0bfedbbad8e2d3,
     type: 3}
+  PeopleAndSandBrickCombine: {fileID: 0}
+  CityAndPeopleCombine: {fileID: 0}
   SandBrickAndWonderCombine: {fileID: 1333915463391056375, guid: eeda9ea106f1af44ab643ba1d6ed725f,
     type: 3}
   _peopleCount: 0
@@ -3329,6 +3363,135 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   printPath: 0
+--- !u!1 &1451431320
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1451431321}
+  - component: {fileID: 1451431322}
+  m_Layer: 0
+  m_Name: Music
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1451431321
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1451431320}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1361849170}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!82 &1451431322
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1451431320}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 5038618434395261335, guid: 310d9dd518e2e1a4b849b7b58d9fdab4,
+    type: 2}
+  m_audioClip: {fileID: 8300000, guid: 664e75ecfdbe1664d8c2325c8d6e6ea3, type: 3}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 1
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &1463290814
 GameObject:
   m_ObjectHideFlags: 0
@@ -3752,6 +3915,10 @@ MonoBehaviour:
   PauseMenu: {fileID: 1234094641}
   WinScreen: {fileID: 790851355}
   LoseScreen: {fileID: 697713729}
+  playsSound: 0
+  SFX_Mixer: {fileID: -6493204333896640244, guid: 310d9dd518e2e1a4b849b7b58d9fdab4,
+    type: 2}
+  SFX_OpenCloseMenu: {fileID: 8300000, guid: 4fe2cde5dbf83be4d9e313be6c35a5c8, type: 3}
 --- !u!4 &1592449990
 Transform:
   m_ObjectHideFlags: 0
@@ -4251,10 +4418,10 @@ MonoBehaviour:
     type: 2}
   SFX_Mixer: {fileID: -6493204333896640244, guid: 310d9dd518e2e1a4b849b7b58d9fdab4,
     type: 2}
-  AMB_UFO_Flyaround: {fileID: 8300000, guid: b5f6a12c7409c7140b509c35ead5f37b, type: 3}
+  AMB_UFO_Flyaround: {fileID: 8300000, guid: ec6faeedad26969499ffddbc38298d81, type: 3}
   AMB_UFO_Idle: {fileID: 8300000, guid: 73902c0f3957647488cf0b5821a8528f, type: 3}
   SFX_Drop: {fileID: 8300000, guid: c606362daf4c5d046a638cf7bf758d2c, type: 3}
-  SFX_Pickup: {fileID: 8300000, guid: 452cfa6d1207cce42bc69fa222cd5f39, type: 3}
+  SFX_Pickup: {fileID: 8300000, guid: 09e4da13860decf488b0836c14a54c83, type: 3}
   SFX_Pickup_SandBrick:
   - {fileID: 8300000, guid: fd938565fcf3492439603cea09dc4ed0, type: 3}
   SFX_Drop_SandBrick:
