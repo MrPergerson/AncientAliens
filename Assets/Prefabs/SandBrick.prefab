@@ -49,8 +49,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _type: SandBrick
   _canBeMoved: 1
-  _value: 1
-  _canShareTile: 1
   playsSound: 0
 --- !u!114 &-9203850542556598215
 MonoBehaviour:
