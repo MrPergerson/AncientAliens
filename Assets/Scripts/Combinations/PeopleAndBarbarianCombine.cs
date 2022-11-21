@@ -16,7 +16,7 @@ namespace AncientAliens.Combinations
         {
             tileObjA = a;
             tileObjB = b;
-            this.location = location;
+            this.Location = location;
             transform.position = location.center;
             location.isLocked = true;
             combineTime = GameRules.peopleAndBarbarianCombineTime;
@@ -45,7 +45,7 @@ namespace AncientAliens.Combinations
         {
             yield return new WaitForSeconds(combineTime);
 
-            location.isLocked = false;
+            Location.isLocked = false;
             barbarianAI.isCombining = false;
 
             if (tileObjA.Type == "People")
@@ -61,12 +61,12 @@ namespace AncientAliens.Combinations
             
             if(tileObjA.Value <= 0)
             {
-                location.RemoveTileObject(tileObjA);
+                Location.RemoveTileObject(tileObjA);
                 tileObjA.DestroySelf();
             }
             if (tileObjB.Value <= 0)
             {
-                location.RemoveTileObject(tileObjB);
+                Location.RemoveTileObject(tileObjB);
                 tileObjB.DestroySelf();
             }
 

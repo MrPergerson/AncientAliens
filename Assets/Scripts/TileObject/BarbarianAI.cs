@@ -1,3 +1,4 @@
+using AncientAliens.GridSystem;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,10 +10,19 @@ namespace AncientAliens.TileObjects
         PathMovement path;
         public bool isCombining;
 
+
+
         private void Awake()
         {
             path = GetComponent<PathMovement>();
             path.onPathReached += StartDamagingWonder;
+        }
+
+        private void Start()
+        {
+            var targetTile = GameManager.Instance.AdjacentWonderTiles[Random.Range(0, 12)].index;
+            path = GetComponent<PathMovement>();
+            path.GetPathTo(EasyGrid.GetTileAt(targetTile), GameRules.barbarianTypeFilter);
         }
 
         private void OnDestroy()

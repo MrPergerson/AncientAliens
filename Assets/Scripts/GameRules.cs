@@ -28,6 +28,7 @@ namespace AncientAliens
         public static int damageToWonder = 5;
         public static int damageToPeople = 5;
         public static int damageToCity = 10;
+        public static string[] barbarianTypeFilter = { "Barbarians", "SandBrick", "Wonder" };
 
         // Combinations
         public static float cityAndPeopleCombineTime = 20;

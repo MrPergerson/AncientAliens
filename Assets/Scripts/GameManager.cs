@@ -38,6 +38,8 @@ namespace AncientAliens
         [SerializeField] GameObject SandBrickAndWonderCombine;
         [SerializeField] GameObject SandBrickAndBarbarianCombine;
 
+        public List<TileObjectCombine> activeCombinations = new List<TileObjectCombine>();
+
         public int _peopleCount = 0;
 
         List<Tile> _adjacentWonderTiles;
@@ -166,6 +168,7 @@ namespace AncientAliens
                 if (combineObj.TryGetComponent(out PeopleAndSandStoneCombine combine))
                 {
                     combine.Execute(a, b, location);
+                    activeCombinations.Add(combine);
                     success = true;
                 }
                 else { Debug.LogError("Missing class"); }
@@ -178,6 +181,7 @@ namespace AncientAliens
                 if (combineObj.TryGetComponent(out PeopleAndPeopleCombine combine))
                 {
                     combine.Execute(a, b, location);
+                    activeCombinations.Add(combine);
                     success = true;
                 }
                 else { Debug.LogError("Missing class"); }
@@ -190,6 +194,7 @@ namespace AncientAliens
                 if (combineObj.TryGetComponent(out SandBrickAndWonderCombine combine))
                 {
                     combine.Execute(a, b, location);
+                    activeCombinations.Add(combine);
                     success = true;
                 }
                 else { Debug.LogError("Missing class"); }
@@ -201,6 +206,7 @@ namespace AncientAliens
                 if (combineObj.TryGetComponent(out PeopleAndSandBrickCombine combine))
                 {
                     combine.Execute(a, b, location);
+                    activeCombinations.Add(combine);
                     success = true;
                 }
                 else { Debug.LogError("Missing class"); }
@@ -212,6 +218,7 @@ namespace AncientAliens
                 if (combineObj.TryGetComponent(out CityAndPeopleCombine combine))
                 {
                     combine.Execute(a, b, location);
+                    activeCombinations.Add(combine);
                     success = true;
                 }
                 else { Debug.LogError("Missing class"); }
@@ -223,6 +230,7 @@ namespace AncientAliens
                 if (combineObj.TryGetComponent(out PeopleAndBarbarianCombine combine))
                 {
                     combine.Execute(a, b, location);
+                    activeCombinations.Add(combine);
                     success = true;
                 }
                 else { Debug.LogError("Missing class"); }
@@ -234,6 +242,7 @@ namespace AncientAliens
                 if (combineObj.TryGetComponent(out SandBrickAndBarbarianCombine combine))
                 {
                     combine.Execute(a, b, location);
+                    activeCombinations.Add(combine);
                     success = true;
                 }
                 else { Debug.LogError("Missing class"); }
@@ -246,6 +255,18 @@ namespace AncientAliens
 
             if (success == false) print("Unable to combine " + types.ToString());
 
+        }
+
+        public void CancelCombineAt(Tile location)
+        {
+            foreach(var combine in activeCombinations)
+            {
+                if(combine.Location.Equals(location))
+                {
+                    combine.Cancel();
+                    return;
+                }
+            }
         }
 
         private void PlaceWonderInLevel()
@@ -296,14 +317,30 @@ namespace AncientAliens
             SetAdjacentWonderTiles();
 
 
-            var result1 = EasyGrid.AssignTileObjectToTile(Instantiate(People), 8, 3);
-            var result2 = EasyGrid.AssignTileObjectToTile(Instantiate(People), 3, 5);
-            var result3 = EasyGrid.AssignTileObjectToTile(Instantiate(People), 6, 5);
+            EasyGrid.AssignTileObjectToTile(Instantiate(People), 8, 3);
+            EasyGrid.AssignTileObjectToTile(Instantiate(People), 3, 5);
+            EasyGrid.AssignTileObjectToTile(Instantiate(People), 6, 5);
 
-            var result4 = EasyGrid.AssignTileObjectToTile(Instantiate(SandStone), 10, 8);
-            var result5 = EasyGrid.AssignTileObjectToTile(Instantiate(SandStone), 7, 4);
-            var result6 = EasyGrid.AssignTileObjectToTile(Instantiate(SandStone), 5, 10);
-            var result7 = EasyGrid.AssignTileObjectToTile(Instantiate(SandStone), 4, 7);
+            EasyGrid.AssignTileObjectToTile(Instantiate(SandBrick), 9, 5);
+
+            for (int i = 0; i < 10; i++)
+            {
+                var point = GetRandomPointOnGrid();
+                EasyGrid.AssignTileObjectToTile(Instantiate(SandStone), (int)point.x, (int)point.y);
+            }
+
+        }
+
+        private Vector2 GetRandomPointOnGrid()
+        {
+            var x = Random.Range(3, gridSizeX-3);
+            var y = Random.Range(3, gridSizeZ-3);
+            var point = new Vector2(x, y);
+
+            if (EasyGrid.GetTileAt(point).IsEmpty())
+                return point;
+            else
+                return GetRandomPointOnGrid(); // careful...
         }
 
         private void GameWin()

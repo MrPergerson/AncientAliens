@@ -12,7 +12,7 @@ namespace AncientAliens.Combinations
         {
             tileObjA = a;
             tileObjB = b;
-            this.location = location;
+            this.Location = location;
             transform.position = location.center;
             location.isLocked = true;
 
@@ -27,14 +27,14 @@ namespace AncientAliens.Combinations
 
             yield return new WaitForEndOfFrame();
 
-            location.isLocked = false;
+            Location.isLocked = false;
 
 
             var barbarian = tileObjA.Type == "Barbarian" ? tileObjA : tileObjB;
 
-            if(!location.PeekAtTopTileObject().Equals(barbarian))
+            if(!Location.PeekAtTopTileObject().Equals(barbarian))
             {
-                location.RemoveTileObject(barbarian);
+                Location.RemoveTileObject(barbarian);
                 barbarian.DestroySelf();
 
                 if (playsSound)

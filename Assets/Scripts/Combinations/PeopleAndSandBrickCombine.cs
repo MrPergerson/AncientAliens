@@ -12,7 +12,7 @@ namespace AncientAliens.Combinations
         {
             tileObjA = a;
             tileObjB = b;
-            this.location = location;
+            this.Location = location;
             transform.position = location.center;
             location.isLocked = true;
             combineTime = GameRules.peopleAndBrickCombineTime;
@@ -32,17 +32,17 @@ namespace AncientAliens.Combinations
 
             yield return new WaitForSeconds(combineTime);
 
-            location.isLocked = false;
+            Location.isLocked = false;
 
-            var newTileObject = Instantiate(output, location.center, Quaternion.identity);
+            var newTileObject = Instantiate(output, Location.center, Quaternion.identity);
             if (newTileObject.TryGetComponent(out TileObject tileObj))
             {
 
-                location.ClearTile();
+                Location.ClearTile();
                 tileObjA.DestroySelf();
                 tileObjB.DestroySelf();
 
-                location.AddTileObject(tileObj);
+                Location.AddTileObject(tileObj);
 
                 if (playsSound)
                 {
@@ -57,5 +57,7 @@ namespace AncientAliens.Combinations
 
 
         }
+
+
     }
 }

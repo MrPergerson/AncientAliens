@@ -17,7 +17,7 @@ namespace AncientAliens.Combinations
         {
             tileObjA = a;
             tileObjB = b;
-            this.location = location;
+            this.Location = location;
             transform.position = location.center;
             location.isLocked = true;
             combineTime = GameRules.peopleAndPeopleCombineTime;
@@ -38,21 +38,21 @@ namespace AncientAliens.Combinations
 
             yield return new WaitForSeconds(combineTime);
  
-            location.isLocked = false;
+            Location.isLocked = false;
 
-            var newTileObject = Instantiate(output, location.center, Quaternion.identity);
+            var newTileObject = Instantiate(output, Location.center, Quaternion.identity);
             if (newTileObject.TryGetComponent(out TileObject tileObjOutput))
             {
-                location.ClearTile();
-                location.AddTileObject(tileObjOutput);
+                Location.ClearTile();
+                Location.AddTileObject(tileObjOutput);
 
                 // GetClosestEmptyTile() is limited to only the adjcent tiles. If all 8 tiles are full, then destroy the tileObject.
                 // This is not intended design, but a temporary solution
-                var tile1 = location.GetClosestEmptyTile();
+                var tile1 = Location.GetClosestEmptyTile();
                 if (tile1 != null) tile1.AddTileObject(tileObjA);
                 else tileObjA.DestroySelf();
 
-                var tile2 = location.GetClosestEmptyTile();
+                var tile2 = Location.GetClosestEmptyTile();
                 if (tile2 != null) tile2.AddTileObject(tileObjB);
                 else tileObjB.DestroySelf();
 

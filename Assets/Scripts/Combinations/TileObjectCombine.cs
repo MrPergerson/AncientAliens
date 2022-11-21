@@ -12,7 +12,7 @@ namespace AncientAliens.Combinations
         protected TileObject tileObjA;
         protected TileObject tileObjB;
         [SerializeField] protected GameObject output;
-        protected Tile location;
+        protected Tile _location;
         protected float combineTime = 1;
         protected Image progressGraphic;
         protected float starttime;
@@ -32,15 +32,28 @@ namespace AncientAliens.Combinations
 
         }
 
+        public Tile Location
+        {
+            get { return _location; }
+            protected set { _location = value; }
+        }
+
         public abstract void Execute(TileObject a, TileObject b, Tile location);
 
         public virtual void Cancel()
         {
-            StopAllCoroutines();
-            location.isLocked = false;
+            StopAllCoroutines();         
+            Location.isLocked = false;
+
+            Location.ClearTile();
+
+            tileObjA.DestroySelf();
+            tileObjB.DestroySelf();
             
             if (playsSound)
                 soundPlayer.PlayCombineCancelSFX();
+
+            Destroy(this.gameObject);
         }
 
         protected abstract IEnumerator ProcessCombineAction();
@@ -61,6 +74,14 @@ namespace AncientAliens.Combinations
         protected virtual void HideTimer()
         {
             progressGraphic.gameObject.SetActive(false);
+        }
+
+        private void OnDestroy()
+        {
+            if(GameManager.Instance != null)
+            {
+                GameManager.Instance.activeCombinations.Remove(this);
+            }
         }
     }
 
