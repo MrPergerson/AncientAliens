@@ -11,6 +11,11 @@ namespace AncientAliens
         public static int maxWonderProgress = 100;
         public static int brickProgressValue = 10;
 
+        //UFO
+        public static float ufoMaxSpeed = 3.4f;
+        public static float ufoCurrentSpeed = 0;
+        public static float ufoSandBrickSlowDown = 0.5f;
+
         // TileObjects
         public static int peopleValue = 10;
         public static int rockValue = 10;
@@ -23,6 +28,7 @@ namespace AncientAliens
         public static int damageToWonder = 5;
         public static int damageToPeople = 5;
         public static int damageToCity = 10;
+        public static string[] barbarianTypeFilter = { "Barbarians", "SandBrick", "Wonder" };
 
         // Combinations
         public static float cityAndPeopleCombineTime = 20;

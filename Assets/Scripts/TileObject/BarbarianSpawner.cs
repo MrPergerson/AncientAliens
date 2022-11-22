@@ -21,11 +21,6 @@ namespace AncientAliens.TileObjects
             StopAllCoroutines(); // unsure if this is needed
         }
 
-        private Vector2 GetRandomAdjacentWonderTile()
-        {
-            return GameManager.Instance.AdjacentWonderTiles[Random.Range(0, 12)].index;
-        }
-
         private void SpawnBarbarian()
         {
             var randomSide = Random.Range(0, 4);
@@ -55,16 +50,12 @@ namespace AncientAliens.TileObjects
             var tileObject = Instantiate(barbarian);
             EasyGrid.AssignTileObjectToTile(tileObject, (int)spawnIndex.x, (int)spawnIndex.y);
 
-            var pathMovement = tileObject.GetComponent<PathMovement>();
-            pathMovement.GetPathTo(EasyGrid.GetTileAt(GetRandomAdjacentWonderTile()));
-
         }
 
         IEnumerator SpawnBarbariansOverTime()
         {
             while(true)
             {
-
 
                 if (GameManager.Instance.GamePaused)
                 {

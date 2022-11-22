@@ -13,6 +13,10 @@ namespace AncientAliens.TileObjects
         [SerializeField] TileObject tileObject;
         public bool pathReached;
 
+        private bool isPaused;
+
+        private string[] typeFilter;
+
         public delegate void PathReached();
         public event PathReached onPathReached;
 
@@ -23,11 +27,22 @@ namespace AncientAliens.TileObjects
             tileObject = GetComponent<TileObject>();
         }
 
-        public void GetPathTo(Tile tile)
+        public void GetPathTo(Tile tile, string[] typeFilter)
         {
-            pathToTarget = pathfinding.FindPath(EasyGrid.GetTileAt(transform.position).index, tile.index);
+            this.typeFilter = typeFilter;
+            pathToTarget = pathfinding.FindPath(EasyGrid.GetTileAt(transform.position).index, tile.index, typeFilter);
             StopAllCoroutines();
             StartCoroutine(MoveToPathOverTime());
+        }
+
+        public void PausePathfinding()
+        {
+            isPaused = true;
+        }
+
+        public void ResumePathfinding()
+        {
+            isPaused = false;
         }
 
         IEnumerator MoveToPathOverTime()
@@ -40,7 +55,7 @@ namespace AncientAliens.TileObjects
             {
                 //currentTile = EasyGrid.GetTileAt(transform.position);
 
-                if (GameManager.Instance.GamePaused)
+                if (isPaused || GameManager.Instance.GamePaused)
                 {
                     yield return new WaitForEndOfFrame();
                     continue;
@@ -62,13 +77,33 @@ namespace AncientAliens.TileObjects
 
                 var hasPeople = nextTile.ContainsTileObjectByType("People");
 
-                if (nextTile.IsEmpty() || (!nextTile.isLocked && hasPeople))
+                var tileHasFilterTileObj = pathfinding.ContainsFilteredTileObject(nextTile, typeFilter);
+
+                if (!tileHasFilterTileObj && nextTile.GetTileObjectCount() < 2)
                 {
                     EasyGrid.GetTileAt(transform.position).RemoveTileObject(tileObject);
 
                     EasyGrid.AssignTileObjectToTile(gameObject, (int)nextTile.index.x, (int)nextTile.index.y);
 
                     index++;
+                }
+                else if(nextTile.GetTileObjectCount() == 2)
+                {
+                    GameManager.Instance.CancelCombineAt(nextTile);
+
+                    // duplicate code, I can do better
+                    EasyGrid.GetTileAt(transform.position).RemoveTileObject(tileObject);
+
+                    EasyGrid.AssignTileObjectToTile(gameObject, (int)nextTile.index.x, (int)nextTile.index.y);
+
+                    index++;
+
+                }
+                else
+                {
+                    var target = pathToTarget[pathToTarget.Count - 1];
+                    pathToTarget = pathfinding.FindPath(EasyGrid.GetTileAt(transform.position).index, target.index, typeFilter);
+                    index = 0;
                 }
 
 

@@ -9,7 +9,7 @@ namespace AncientAliens.GridSystem
         public bool printPath;
 
 
-        public List<Tile> FindPath(Vector2 startIndex, Vector2 targetIndex)
+        public List<Tile> FindPath(Vector2 startIndex, Vector2 targetIndex, string[] typeFilters)
         {
             Tile startTile = EasyGrid.GetTileAt(startIndex);
             Tile targetTile = EasyGrid.GetTileAt(targetIndex);
@@ -45,7 +45,7 @@ namespace AncientAliens.GridSystem
                 // Get costs for adjcent tiles
                 foreach (Tile adjcentTile in EasyGrid.FindAdjcentTiles(tile))
                 {
-                    if (adjcentTile.isLocked || closedSet.Contains(adjcentTile))
+                    if (adjcentTile.isLocked || ContainsFilteredTileObject(adjcentTile, typeFilters) || closedSet.Contains(adjcentTile))
                     {
                         continue;
                     }
@@ -94,6 +94,17 @@ namespace AncientAliens.GridSystem
             }
 
             return path;
+        }
+
+        public bool ContainsFilteredTileObject(Tile tile, string[] filter)
+        {
+            for(int i = 0; i < filter.Length; i++)
+            {
+                if (tile.PeekAtTileObjectOfType(filter[i]) != null)
+                    return true;
+            }
+            
+            return false;
         }
 
         int GetDistance(Tile a, Tile b)

@@ -13,7 +13,7 @@ namespace AncientAliens.Combinations
         {
             tileObjA = a;
             tileObjB = b;
-            this.location = location;
+            this.Location = location;
             transform.position = location.center;
             location.isLocked = true;
 
@@ -25,13 +25,13 @@ namespace AncientAliens.Combinations
             print("combining");   
             yield return new WaitForSeconds(2);
             print("finished");
-            location.isLocked = false;
+            Location.isLocked = false;
 
-            var newTileObject = Instantiate(output, location.center, Quaternion.identity);
+            var newTileObject = Instantiate(output, Location.center, Quaternion.identity);
             if(newTileObject.TryGetComponent(out TileObject tileObj))
             {
-                location.ClearTile();
-                location.AddTileObject(tileObj);
+                Location.ClearTile();
+                Location.AddTileObject(tileObj);
             }
 
             Destroy(tileObjA.gameObject);

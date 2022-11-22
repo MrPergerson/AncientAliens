@@ -20,7 +20,7 @@ namespace AncientAliens.TileObjects
             targetIndex = targetTile.index;
 
             var pathMovement = tileObject.GetComponent<PathMovement>();
-            pathMovement.GetPathTo(EasyGrid.GetTileAt(targetIndex));
+            pathMovement.GetPathTo(EasyGrid.GetTileAt(targetIndex), GameRules.barbarianTypeFilter);
 
         }
     }

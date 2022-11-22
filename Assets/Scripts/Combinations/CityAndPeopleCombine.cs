@@ -12,7 +12,7 @@ namespace AncientAliens.Combinations
         {
             tileObjA = a;
             tileObjB = b;
-            this.location = location;
+            this.Location = location;
             transform.position = location.center;
             location.isLocked = true;
             combineTime = GameRules.cityAndPeopleCombineTime;
@@ -33,23 +33,23 @@ namespace AncientAliens.Combinations
 
             yield return new WaitForSeconds(combineTime);
 
-            location.isLocked = false;            
+            Location.isLocked = false;            
 
-            var newTileObject1 = Instantiate(output, location.center, Quaternion.identity);
+            var newTileObject1 = Instantiate(output, Location.center, Quaternion.identity);
             if (newTileObject1.TryGetComponent(out TileObject tileObjOutput1))
             {
                 // GetClosestEmptyTile() is limited to only the adjcent tiles. If all 8 tiles are full, then destroy the tileObject.
                 // This is not intended design, but a temporary solution
-                var tile1 = location.GetClosestEmptyTile();
+                var tile1 = Location.GetClosestEmptyTile();
                 if (tile1 != null) tile1.AddTileObject(tileObjOutput1);
                 else tileObjOutput1.DestroySelf();
 
             }
 
-            var newTileObject2 = Instantiate(output, location.center, Quaternion.identity);
+            var newTileObject2 = Instantiate(output, Location.center, Quaternion.identity);
             if (newTileObject2.TryGetComponent(out TileObject tileObjOutput2))
             {
-                var tile1 = location.GetClosestEmptyTile();
+                var tile1 = Location.GetClosestEmptyTile();
                 if (tile1 != null) tile1.AddTileObject(tileObjOutput2);
                 else tileObjOutput2.DestroySelf();
 
@@ -57,16 +57,16 @@ namespace AncientAliens.Combinations
 
             }
 
-            location.ClearTile();
+            Location.ClearTile();
             if(tileObjA.Type == "City")
             {
-                location.AddTileObject(tileObjA);
-                location.AddTileObject(tileObjB);
+                Location.AddTileObject(tileObjA);
+                Location.AddTileObject(tileObjB);
             }
             else
             {
-                location.AddTileObject(tileObjB);
-                location.AddTileObject(tileObjA);
+                Location.AddTileObject(tileObjB);
+                Location.AddTileObject(tileObjA);
             }
 
 

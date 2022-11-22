@@ -2644,6 +2644,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _gamePaused: 0
+  _gameOver: 0
   _wonderBuildProgress: 20
   tileSize: 1
   gridSizeX: 16
@@ -2666,6 +2667,8 @@ MonoBehaviour:
   CityAndPeopleCombine: {fileID: 3515477913227128860, guid: 3ce0e48962fb89f4bb8621806d97025c,
     type: 3}
   SandBrickAndWonderCombine: {fileID: 1333915463391056375, guid: eeda9ea106f1af44ab643ba1d6ed725f,
+    type: 3}
+  SandBrickAndBarbarianCombine: {fileID: 1110252044740406363, guid: b53c4e621d912164f890b2586404fc21,
     type: 3}
   _peopleCount: 0
 --- !u!4 &1087165716

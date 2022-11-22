@@ -53,6 +53,9 @@ namespace AncientAliens
                 return false;
             }
 
+            if (tileObject.Type == "SandBrick")
+                GameRules.ufoCurrentSpeed *= GameRules.ufoSandBrickSlowDown;
+
             this.tileObject = tileObject;
             SetTileObjectPositionToTractorBeam();
 
@@ -76,6 +79,7 @@ namespace AncientAliens
             if(result == true)
             {
                 SetTileObjectPositionToTile(tile);
+                GameRules.ufoCurrentSpeed = GameRules.ufoMaxSpeed;
                 tileObject = null;
                 return true;
             }

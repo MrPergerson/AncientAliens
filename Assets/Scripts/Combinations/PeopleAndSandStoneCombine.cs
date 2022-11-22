@@ -12,7 +12,7 @@ namespace AncientAliens.Combinations
         {
             tileObjA = a;
             tileObjB = b;
-            this.location = location;
+            this.Location = location;
             transform.position = location.center;
             location.isLocked = true;
 
@@ -33,13 +33,13 @@ namespace AncientAliens.Combinations
 
             yield return new WaitForSeconds(combineTime);
 
-            location.isLocked = false;
+            Location.isLocked = false;
 
-            var newTileObject = Instantiate(output, location.center, Quaternion.identity);
+            var newTileObject = Instantiate(output, Location.center, Quaternion.identity);
             if (newTileObject.TryGetComponent(out TileObject tileObj))
             {
 
-                var people = location.ExtractTopTileObject();
+                var people = Location.ExtractTopTileObject();
                 people.DestroySelf();
 
                 TileObject tileStone = tileObjA.Type == "SandStone" ? tileObjA : tileObjB;
@@ -47,11 +47,11 @@ namespace AncientAliens.Combinations
 
                 if(tileStone.Value <= 0)
                 {
-                    location.ExtractTopTileObject();
+                    Location.ExtractTopTileObject();
                     tileStone.DestroySelf();
                 }
 
-                location.AddTileObject(tileObj);
+                Location.AddTileObject(tileObj);
 
                 if (playsSound)
                 {
@@ -65,6 +65,20 @@ namespace AncientAliens.Combinations
             }
 
 
+        }
+
+        public override void Cancel()
+        {
+            StopAllCoroutines();
+            Location.isLocked = false;
+
+            var people = Location.ExtractTopTileObject();
+            people.DestroySelf();
+
+            if (playsSound)
+                soundPlayer.PlayCombineCancelSFX();
+
+            Destroy(this.gameObject);
         }
     }
 }
