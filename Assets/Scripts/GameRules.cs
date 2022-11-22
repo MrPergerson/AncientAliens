@@ -18,7 +18,7 @@ namespace AncientAliens
 
         // TileObjects
         public static int peopleValue = 10;
-        public static int rockValue = 10;
+        public static int rockValue = 15;
         public static int brickValue = 5;
         public static int barbarianValue = 5;
         public static int cityValue = 10;

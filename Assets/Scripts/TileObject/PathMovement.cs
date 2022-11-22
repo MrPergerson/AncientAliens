@@ -20,6 +20,9 @@ namespace AncientAliens.TileObjects
         public delegate void PathReached();
         public event PathReached onPathReached;
 
+        public delegate void Moved();
+        public event Moved onMoved;
+
 
         private void Awake()
         {
@@ -85,6 +88,8 @@ namespace AncientAliens.TileObjects
 
                     EasyGrid.AssignTileObjectToTile(gameObject, (int)nextTile.index.x, (int)nextTile.index.y);
 
+                    onMoved?.Invoke();
+
                     index++;
                 }
                 else if(nextTile.GetTileObjectCount() == 2)
@@ -95,6 +100,8 @@ namespace AncientAliens.TileObjects
                     EasyGrid.GetTileAt(transform.position).RemoveTileObject(tileObject);
 
                     EasyGrid.AssignTileObjectToTile(gameObject, (int)nextTile.index.x, (int)nextTile.index.y);
+
+                    onMoved?.Invoke();
 
                     index++;
 

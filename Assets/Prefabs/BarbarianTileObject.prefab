@@ -56,8 +56,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _type: Barbarian
   _canBeMoved: 0
-  _value: 10
-  _canShareTile: 1
   playsSound: 0
 --- !u!114 &2839983425918972406
 MonoBehaviour:
@@ -71,6 +69,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 052befb4aed6cf04bb898291e5afb7ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isCombining: 0
 --- !u!114 &3193581557163484434
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -110,11 +109,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b28d6a4994885549985c0c13bf72827, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SFX_Mixer: {fileID: -6493204333896640244, guid: 310d9dd518e2e1a4b849b7b58d9fdab4,
+  SFX_Mixer: {fileID: -4637510047991167061, guid: 310d9dd518e2e1a4b849b7b58d9fdab4,
     type: 2}
   SFX_OnCreate: {fileID: 8300000, guid: 72e273d60a80059469d2103bfc458682, type: 3}
   SFX_OnDestroy: {fileID: 0}
-  SFX_OnMove: {fileID: 0}
+  SFX_OnMove:
+  - {fileID: 8300000, guid: 690744667ff00d34a878f150cc24da33, type: 3}
+  - {fileID: 8300000, guid: 2350f57e54769f548a8b882ede23f0c1, type: 3}
+  - {fileID: 8300000, guid: bfa18948563124741ad413c86f41553e, type: 3}
+  - {fileID: 8300000, guid: f9803b72b3c614e428c698e72ecdbbb0, type: 3}
+  - {fileID: 8300000, guid: 010e4318ea89b034882048a13ac9fda5, type: 3}
 --- !u!1 &3193581557176677582
 GameObject:
   m_ObjectHideFlags: 0

@@ -43,7 +43,7 @@ namespace AncientAliens.Combinations
                 people.DestroySelf();
 
                 TileObject tileStone = tileObjA.Type == "SandStone" ? tileObjA : tileObjB;
-                tileStone.Value -= 10;
+                tileStone.Value -= tileObj.Value;
 
                 if(tileStone.Value <= 0)
                 {

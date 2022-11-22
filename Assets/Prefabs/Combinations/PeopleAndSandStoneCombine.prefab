@@ -188,6 +188,7 @@ GameObject:
   - component: {fileID: 3515477913227128850}
   - component: {fileID: 3515477913227128861}
   - component: {fileID: 967916490969163115}
+  - component: {fileID: 2337128564666338232}
   m_Layer: 0
   m_Name: PeopleAndSandStoneCombine
   m_TagString: Combine
@@ -223,10 +224,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b15d2db6a4241a543b33cb173167acf2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tileObjA: {fileID: 0}
-  tileObjB: {fileID: 0}
   output: {fileID: 2966114659223284263, guid: e01a38f4929881e438a0c1af3c810c9d, type: 3}
-  combineTime: 2
   playsSound: 0
 --- !u!114 &967916490969163115
 MonoBehaviour:
@@ -244,8 +242,113 @@ MonoBehaviour:
     type: 2}
   SFX_CombineStart: {fileID: 0}
   SFX_CombineEnd: {fileID: 0}
-  SFX_CombineCancel: {fileID: 0}
+  SFX_CombineCancel: {fileID: 8300000, guid: 02bd2833d9ed05a4da4e22386d22b6dc, type: 3}
   SFX_Combine:
   - {fileID: 8300000, guid: 03166c6c89d48be48a128870f833eaf4, type: 3}
   - {fileID: 8300000, guid: 88ac7bc32005a7541bea50e0de3f745a, type: 3}
   - {fileID: 8300000, guid: 5e0cff73916356c4dabcf042b8323aeb, type: 3}
+--- !u!82 &2337128564666338232
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3515477913227128860}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 5
+  Pan2D: 0
+  rolloffMode: 2
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0.2077764
+      value: 1.0037041
+      inSlope: -5.5919056
+      outSlope: -5.5919056
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.20989016
+    - serializedVersion: 3
+      time: 0.42309064
+      value: 0.35458374
+      inSlope: -1.3617746
+      outSlope: -1.3617746
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.4472999
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 0.007405609
+      inSlope: -0.15179084
+      outSlope: -0.15179084
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.340942
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4

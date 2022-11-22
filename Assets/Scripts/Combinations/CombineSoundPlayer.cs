@@ -5,6 +5,7 @@ using UnityEngine.Audio;
 
 namespace AncientAliens.Combinations
 {
+    [RequireComponent(typeof(AudioSource))]
     public class CombineSoundPlayer : MonoBehaviour
     {
         public AudioMixerGroup SFX_Mixer;
@@ -20,13 +21,9 @@ namespace AncientAliens.Combinations
 
         private void Awake()
         {
-            GameObject sfxAS = new GameObject("SFX_Audio");
 
-            sfxAS.transform.parent = this.transform;
+            SFX_audioSource = GetComponent<AudioSource>();
 
-            sfxAS.transform.localPosition = Vector3.zero;
-
-            SFX_audioSource = sfxAS.AddComponent<AudioSource>();
 
             if (SFX_Mixer) SFX_audioSource.outputAudioMixerGroup = SFX_Mixer;
         }
@@ -42,10 +39,21 @@ namespace AncientAliens.Combinations
 
         public void PlayCombineLoopSFX()
         {
-            if(SFX_Combine != null && SFX_Combine.Count > 0)
+            if (SFX_Combine != null && SFX_Combine.Count > 0)
             {
                 playingLoop = true;
-                StartCoroutine(ProcessCombineSounds());
+
+                if (SFX_Combine.Count == 1)
+                {
+                    SFX_audioSource.clip = SFX_Combine[0];
+                    SFX_audioSource.Play();
+                }
+                else
+                {
+                    StartCoroutine(ProcessCombineSounds());
+
+                }
+
 
             }    
 

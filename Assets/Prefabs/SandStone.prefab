@@ -317,8 +317,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5728180066404927736}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0, y: 0.015, z: 0}
+  m_LocalScale: {x: 1, y: 0.25783, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8526583974932437700}
@@ -343,8 +343,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _type: SandStone
   _canBeMoved: 0
-  _value: 30
-  _canShareTile: 1
   playsSound: 0
 --- !u!114 &-8557029888893750956
 MonoBehaviour:
@@ -361,8 +359,9 @@ MonoBehaviour:
   SFX_Mixer: {fileID: -6493204333896640244, guid: 310d9dd518e2e1a4b849b7b58d9fdab4,
     type: 2}
   SFX_OnCreate: {fileID: 0}
-  SFX_OnDestroy: {fileID: 0}
-  SFX_OnMove: {fileID: 0}
+  SFX_OnDestroy: {fileID: 8300000, guid: 88ab481bed23ed242b37452a99668035, type: 3}
+  SFX_OnMove:
+  - {fileID: 0}
 --- !u!1 &5864523371825960099
 GameObject:
   m_ObjectHideFlags: 0

@@ -323,7 +323,7 @@ namespace AncientAliens
 
             EasyGrid.AssignTileObjectToTile(Instantiate(SandBrick), 9, 5);
 
-            for (int i = 0; i < 10; i++)
+            for (int i = 0; i < 8; i++)
             {
                 var point = GetRandomPointOnGrid();
                 EasyGrid.AssignTileObjectToTile(Instantiate(SandStone), (int)point.x, (int)point.y);
@@ -337,7 +337,8 @@ namespace AncientAliens
             var y = Random.Range(3, gridSizeZ-3);
             var point = new Vector2(x, y);
 
-            if (EasyGrid.GetTileAt(point).IsEmpty())
+            var tile = EasyGrid.GetTileAt(point);
+            if (tile.IsEmpty() && !AdjacentWonderTiles.Contains(tile))
                 return point;
             else
                 return GetRandomPointOnGrid(); // careful...

@@ -46,17 +46,6 @@ namespace AncientAliens.Combinations
 
             }
 
-            var newTileObject2 = Instantiate(output, Location.center, Quaternion.identity);
-            if (newTileObject2.TryGetComponent(out TileObject tileObjOutput2))
-            {
-                var tile1 = Location.GetClosestEmptyTile();
-                if (tile1 != null) tile1.AddTileObject(tileObjOutput2);
-                else tileObjOutput2.DestroySelf();
-
-
-
-            }
-
             Location.ClearTile();
             if(tileObjA.Type == "City")
             {

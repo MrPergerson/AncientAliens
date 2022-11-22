@@ -53,8 +53,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _type: People
   _canBeMoved: 1
-  _value: 10
-  _canShareTile: 1
   playsSound: 0
 --- !u!114 &-7906288557792226951
 MonoBehaviour:

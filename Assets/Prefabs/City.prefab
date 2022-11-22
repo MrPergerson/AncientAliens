@@ -48,8 +48,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _type: City
   _canBeMoved: 0
-  _value: 1
-  _canShareTile: 1
   playsSound: 0
 --- !u!114 &933673560006419523
 MonoBehaviour:
