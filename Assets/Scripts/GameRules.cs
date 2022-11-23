@@ -25,7 +25,7 @@ namespace AncientAliens
 
         // BarbarianAI
         public static float barbarianActionTick = 1;
-        public static int damageToWonder = 5;
+        public static int damageToWonder = 2;
         public static int damageToPeople = 5;
         public static int damageToCity = 10;
         public static string[] barbarianTypeFilter = { "Barbarians", "SandBrick", "Wonder" };
