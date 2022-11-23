@@ -17,6 +17,7 @@ namespace AncientAliens
         [SerializeField] private bool _gameOver;
 
         [SerializeField] int _wonderBuildProgress = 20;
+        [SerializeField] Wonder wonder;
 
         [SerializeField] float tileSize = 1;
         [SerializeField] int gridSizeX = 10;
@@ -53,6 +54,11 @@ namespace AncientAliens
             get { return _wonderBuildProgress; }
             set 
             { 
+                if(value < _wonderBuildProgress)
+                {
+                    wonder.Flash();
+                }
+
                 _wonderBuildProgress = value;
 
                 if (!GameOver && _wonderBuildProgress >= GameRules.maxWonderProgress)
