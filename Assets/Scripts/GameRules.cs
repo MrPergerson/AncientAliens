@@ -14,10 +14,10 @@ namespace AncientAliens
         //UFO
         public static float ufoMaxSpeed = 3.4f;
         public static float ufoCurrentSpeed = 0;
-        public static float ufoSandBrickSlowDown = 0.5f;
+        public static float ufoSandBrickSlowDown = 0.4f;
 
         // TileObjects
-        public static int peopleValue = 10;
+        public static int peopleValue = 5;
         public static int rockValue = 15;
         public static int brickValue = 5;
         public static int barbarianValue = 5;
@@ -31,11 +31,11 @@ namespace AncientAliens
         public static string[] barbarianTypeFilter = { "Barbarians", "SandBrick", "Wonder" };
 
         // Combinations
-        public static float cityAndPeopleCombineTime = 20;
+        public static float cityAndPeopleCombineTime = 10;
         public static float peopleAndBarbarianCombineTime = 5;
-        public static float peopleAndPeopleCombineTime = 12;
-        public static float peopleAndBrickCombineTime = 20;
-        public static float peopleAndRockCombineTIme = 10;
+        public static float peopleAndPeopleCombineTime = 8;
+        public static float peopleAndBrickCombineTime = 10;
+        public static float peopleAndRockCombineTIme = 5;
         
     }
 }

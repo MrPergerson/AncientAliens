@@ -22,7 +22,7 @@ namespace AncientAliens.Combinations
 
         protected virtual void Awake()
         {
-            progressGraphic = GetComponentInChildren<Image>();
+            progressGraphic = transform.GetChild(0).GetChild(1).GetComponent<Image>();
            
             if(TryGetComponent(out CombineSoundPlayer soundPlayer))
             {
