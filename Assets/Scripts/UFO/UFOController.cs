@@ -22,6 +22,21 @@ namespace AncientAliens.UFO
             simpleMove = GetComponent<SimpleMove>();
             tractorBeam = GetComponent<TractorBeam>();
             soundPlayer = GetComponent<UFOSoundPlayer>();
+            
+        }
+
+        private void DisableFunctionality()
+        {
+            simpleMove.enabled = false;
+            tractorBeam.enabled = false;
+            soundPlayer.enabled = false;
+        }
+
+        private void EnableFunctionality()
+        {
+            simpleMove.enabled = true;
+            tractorBeam.enabled = true;
+            soundPlayer.enabled = true;
         }
 
         private void Start()

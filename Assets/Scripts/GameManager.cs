@@ -41,11 +41,21 @@ namespace AncientAliens
 
         public List<TileObjectCombine> activeCombinations = new List<TileObjectCombine>();
 
+        GameStartAnimation gameStartAnim;
+
         public int _peopleCount = 0;
 
         List<Tile> _adjacentWonderTiles;
 
         Controls controls;
+
+        public delegate void GameStarted();
+        public event GameStarted onGameStarted;
+
+        public delegate void GameEnd();
+        public event GameEnd onGameEnded;
+
+
 
 
 
@@ -127,14 +137,27 @@ namespace AncientAliens
             GameOver = false;
 
             controls = new Controls();
+            gameStartAnim = GetComponent<GameStartAnimation>();
 
             EasyGrid.InitializeGrid(tileSize, gridSizeX, gridSizeZ);
+            
+        }
+
+        public void StartGame()
+        {
 
 
-            SetUpLevel();
-            //var result2 = Grid.AssignTileObjectToTile(Instantiate(People), 3, 5);
-            //print(result2);
+            onGameStarted?.Invoke();
+            //gameStartAnim.onAnimationFinished += {  }
 
+
+        }
+        
+        public void EndGame()
+        {
+            onGameEnded?.Invoke();
+
+            
         }
 
         private void SetMenuState(InputAction.CallbackContext ctx)
@@ -259,7 +282,7 @@ namespace AncientAliens
                 success = true; // ignore
             }
 
-            if (success == false) print("Unable to combine " + types.ToString());
+            //if (success == false) print("Unable to combine " + types.ToString());
 
         }
 
@@ -317,7 +340,7 @@ namespace AncientAliens
 
         }
 
-        private void SetUpLevel()
+        public void SetUpLevel()
         {
             PlaceWonderInLevel();
             SetAdjacentWonderTiles();

@@ -289,6 +289,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Canvas
       objectReference: {fileID: 0}
+    - target: {fileID: 6975746703120943557, guid: 4164aeb25d9697342bb20506cd5feebb,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4164aeb25d9697342bb20506cd5feebb, type: 3}
 --- !u!224 &1895198053812137840 stripped
