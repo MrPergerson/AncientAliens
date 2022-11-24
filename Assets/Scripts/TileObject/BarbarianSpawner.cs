@@ -9,16 +9,30 @@ namespace AncientAliens.TileObjects
     {
         [SerializeField] GameObject barbarian;
 
-        [SerializeField] int spawnRate = 10;
+        [SerializeField] AnimationCurve spawnRateCurve;
+        [SerializeField] float spawnRate = 20;
+        [SerializeField] float depreciationRate = 1.1f;
+        [SerializeField] float minSpawnRate = 6;
+        [SerializeField] private float currentSpawnRate;
+        private bool started;
 
-        private void Start()
+        private void Awake()
         {
-            StartCoroutine(SpawnBarbariansOverTime());
+            GameManager.Instance.onGameStarted += BeginSpawning;
         }
 
         private void OnDestroy()
         {
             StopAllCoroutines(); // unsure if this is needed
+        }
+
+        private void BeginSpawning()
+        {
+            started = true;            
+            currentSpawnRate = spawnRate;
+            StartCoroutine(IncreaseSpawnRate());
+            StartCoroutine(SpawnBarbariansOverTime());
+
         }
 
         private void SpawnBarbarian()
@@ -52,9 +66,30 @@ namespace AncientAliens.TileObjects
 
         }
 
+        IEnumerator IncreaseSpawnRate()
+        {
+
+            while(currentSpawnRate > minSpawnRate)
+            {
+
+                yield return new WaitForSeconds(20);
+
+                currentSpawnRate /= depreciationRate;
+
+                
+                
+
+            }
+
+            currentSpawnRate = minSpawnRate;
+
+        }
+
         IEnumerator SpawnBarbariansOverTime()
         {
-            while(true)
+
+
+            while (true)
             {
 
                 if (GameManager.Instance.GamePaused)
@@ -63,7 +98,7 @@ namespace AncientAliens.TileObjects
                     continue;
                 }
 
-                yield return new WaitForSeconds(spawnRate);
+                yield return new WaitForSeconds(currentSpawnRate);
 
                 if (GameManager.Instance.GamePaused)
                 {

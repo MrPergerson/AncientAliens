@@ -52,7 +52,7 @@ namespace AncientAliens
 
             var flashTime = flashLength / 2;
 
-            while (Time.time - starttime < flashLength)
+            while (Time.time - starttime < flashTime)
             {
                 lerpTime = (Time.time - starttime) / flashTime;
                 meshRenderer.material.color = Color.Lerp(normalColor, hitFlash, lerpTime);

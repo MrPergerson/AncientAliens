@@ -22,7 +22,10 @@ namespace AncientAliens.Combinations
 
         protected virtual void Awake()
         {
-            progressGraphic = transform.GetChild(0).GetChild(1).GetComponent<Image>();
+            var obj = transform.GetChild(0).GetChild(1);
+
+            if(obj != null)
+                progressGraphic = obj.GetComponent<Image>();
            
             if(TryGetComponent(out CombineSoundPlayer soundPlayer))
             {
@@ -73,7 +76,7 @@ namespace AncientAliens.Combinations
 
         protected virtual void HideTimer()
         {
-            progressGraphic.gameObject.SetActive(false);
+            progressGraphic.transform.parent.gameObject.SetActive(false);
         }
 
         private void OnDestroy()

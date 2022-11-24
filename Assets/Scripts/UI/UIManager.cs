@@ -11,6 +11,7 @@ namespace AncientAliens.UI
     {
         public static UIManager Instance;
 
+        [SerializeField] GameObject MainMenu;
         [SerializeField] GameObject PauseMenu;
         [SerializeField] GameObject WinScreen;
         [SerializeField] GameObject LoseScreen;
@@ -49,6 +50,7 @@ namespace AncientAliens.UI
         public void OpenPauseMenu()
         {
 
+            MainMenu.SetActive(false);
             WinScreen.SetActive(false);
             LoseScreen.SetActive(false);
 
@@ -61,6 +63,7 @@ namespace AncientAliens.UI
 
         public void OpenWinScreen()
         {
+            MainMenu.SetActive(false);
             PauseMenu.SetActive(false);
             LoseScreen.SetActive(false);
 
@@ -74,6 +77,7 @@ namespace AncientAliens.UI
 
         public void OpenLoseScreen()
         {
+            MainMenu.SetActive(false);
             PauseMenu.SetActive(false);
             WinScreen.SetActive(false);
             LoseScreen.SetActive(true);
@@ -84,13 +88,23 @@ namespace AncientAliens.UI
             }
         }
 
-        public void CloseMenus()
+        public void OpenMainMenu()
         {
+            MainMenu.SetActive(true);
             PauseMenu.SetActive(false);
             WinScreen.SetActive(false);
             LoseScreen.SetActive(false);
 
-            if (playsSound && SFX_OpenCloseMenu)
+        }
+
+        public void CloseMenus(bool playSound = false)
+        {
+            MainMenu.SetActive(false);
+            PauseMenu.SetActive(false);
+            WinScreen.SetActive(false);
+            LoseScreen.SetActive(false);
+
+            if (playSound && playsSound && SFX_OpenCloseMenu)
             {
                 audioSource.PlayOneShot(SFX_OpenCloseMenu);
             }
