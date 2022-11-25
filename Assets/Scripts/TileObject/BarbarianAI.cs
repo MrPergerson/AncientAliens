@@ -30,6 +30,7 @@ namespace AncientAliens.TileObjects
 
         private void OnDestroy()
         {
+            StopAllCoroutines();
             path.onPathReached -= StartDamagingWonder;
             path.onMoved -= soundPlayer.PlayOnMoveSFX;
         }
@@ -57,6 +58,7 @@ namespace AncientAliens.TileObjects
                     continue;
                 }
 
+                print(gameObject.name + " is attacking");
                 GameManager.Instance.WonderBuildProgress -= GameRules.damageToWonder;
 
             }
