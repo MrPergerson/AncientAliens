@@ -34,13 +34,17 @@ namespace AncientAliens.Combinations
 
             if(!Location.PeekAtTopTileObject().Equals(barbarian))
             {
-                Location.RemoveTileObject(barbarian);
-                barbarian.DestroySelf();
+                //Location.RemoveTileObject(barbarian);
+                //barbarian.DestroySelf();
 
                 if (playsSound)
                 {
                     soundPlayer.StopCombineLoopSFX();
                 }
+
+                tileObjA.DestroySelf();
+                tileObjB.DestroySelf();
+                Location.ClearTile();
             }
  
             //HideTimer();

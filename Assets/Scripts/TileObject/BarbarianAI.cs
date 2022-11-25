@@ -42,7 +42,14 @@ namespace AncientAliens.TileObjects
 
         IEnumerator DamageWonder()
         {
-            while(path.pathReached)
+            bool atPyramid = false;
+            var location = EasyGrid.GetTileAt(transform.position);
+            if (GameManager.Instance.AdjacentWonderTiles.Contains(location))
+                atPyramid = true;
+            else
+                print("not at pyramid");
+                
+            while(atPyramid && path.pathReached)
             {
 
                 if (GameManager.Instance.GamePaused)
@@ -58,7 +65,7 @@ namespace AncientAliens.TileObjects
                     continue;
                 }
 
-                print(gameObject.name + " is attacking");
+                //print(gameObject.name + " is attacking");
                 GameManager.Instance.WonderBuildProgress -= GameRules.damageToWonder;
 
             }
