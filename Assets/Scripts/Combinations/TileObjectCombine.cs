@@ -33,6 +33,7 @@ namespace AncientAliens.Combinations
                 playsSound = true;
             }
 
+            transform.parent = GameManager.Instance.CombineContainer;
         }
 
         public Tile Location

@@ -24,6 +24,7 @@ namespace AncientAliens
         [SerializeField] int gridSizeZ = 10;
 
         [Header("TileObjects")]
+        public Transform TileObjContainer;
         [SerializeField] GameObject People;
         [SerializeField] GameObject SandStone;
         [SerializeField] GameObject SandBrick;
@@ -31,6 +32,7 @@ namespace AncientAliens
         [SerializeField] GameObject Wonder;
 
         [Header("Combinations")]
+        public Transform CombineContainer;
         [SerializeField] GameObject PeopleAndPeopleCombine;
         [SerializeField] GameObject PeopleAndSandStoneCombine;
         [SerializeField] GameObject PeopleAndBarbarianCombine;
@@ -67,9 +69,13 @@ namespace AncientAliens
                 if(value < _wonderBuildProgress)
                 {
                     wonder.Flash();
+                    
                 }
 
+                
+
                 _wonderBuildProgress = value;
+                wonder.UpdateModel(WonderBuildProgress);
 
                 if (!GameOver && _wonderBuildProgress >= GameRules.maxWonderProgress)
                     GameWin();
@@ -146,7 +152,7 @@ namespace AncientAliens
         public void StartGame()
         {
 
-
+            
             onGameStarted?.Invoke();
             //gameStartAnim.onAnimationFinished += {  }
 
@@ -345,6 +351,7 @@ namespace AncientAliens
             PlaceWonderInLevel();
             SetAdjacentWonderTiles();
 
+            WonderBuildProgress = _wonderBuildProgress;
 
             EasyGrid.AssignTileObjectToTile(Instantiate(People), 8, 3);
             EasyGrid.AssignTileObjectToTile(Instantiate(People), 3, 5);

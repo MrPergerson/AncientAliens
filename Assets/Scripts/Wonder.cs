@@ -12,6 +12,14 @@ namespace AncientAliens
 
         [SerializeField] AudioClip hit01;
         [SerializeField] AudioClip hit02;
+
+        [SerializeField] GameObject progress20;
+        [SerializeField] GameObject progress40;
+        [SerializeField] GameObject progress60;
+        [SerializeField] GameObject progress100;
+
+        GameObject currentModel; 
+
         float starttime;
 
         AudioSource audioSource;
@@ -22,18 +30,56 @@ namespace AncientAliens
 
         void Start()
         {
-            audioSource = GetComponent<AudioSource>();
-            meshRenderer = GetComponent<MeshRenderer>();
-            normalColor = meshRenderer.material.color;
 
+            audioSource = GetComponent<AudioSource>();
+            //UpdateModel(GameManager.Instance.WonderBuildProgress);
 
         }
 
-
-        void Update()
+        public void UpdateModel(int progress)
         {
-            //meshRenderer.material.color = Color.Lerp(meshRenderer.material.color, hitFlash, .1f);
 
+            if(progress >= 100)
+            {
+                currentModel = progress100;
+                progress100.SetActive(true);
+                progress60.SetActive(false);
+                progress40.SetActive(false);
+                progress20.SetActive(false);
+                
+            }
+            else if(progress >= 60)
+            {
+                currentModel = progress60;
+                progress100.SetActive(false);
+                progress60.SetActive(true);
+                progress40.SetActive(false);
+                progress20.SetActive(false);
+            }
+            else if(progress >= 40)
+            {
+                currentModel = progress40;
+                progress100.SetActive(false);
+                progress60.SetActive(false);
+                progress40.SetActive(true);
+                progress20.SetActive(false);
+            }
+            else
+            {
+                currentModel = progress20;
+                progress100.SetActive(false);
+                progress60.SetActive(false);
+                progress40.SetActive(false);
+                progress20.SetActive(true);
+            }
+
+            UpdateModelReferences();
+        }
+
+        void UpdateModelReferences()
+        {
+            meshRenderer = currentModel.GetComponentInChildren<MeshRenderer>();
+            normalColor = meshRenderer.material.color;
         }
 
         public void Flash()

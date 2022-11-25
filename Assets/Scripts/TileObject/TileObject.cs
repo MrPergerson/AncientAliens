@@ -51,6 +51,8 @@ namespace AncientAliens.TileObjects
                 this.soundPlayer = soundPlayer;
                 playsSound = true;
             }
+
+            transform.parent = GameManager.Instance.TileObjContainer;
         }
 
         private void Start()
