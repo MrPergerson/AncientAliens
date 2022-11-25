@@ -154,6 +154,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: pWorker_HP@T-Pose (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 5866666021909216657, guid: 7eb09a4123a5e4f4cacc83a019fec557,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 143c33d775061974ca35d839f35995c1, type: 2}
+    - target: {fileID: 5866666021909216657, guid: 7eb09a4123a5e4f4cacc83a019fec557,
+        type: 3}
+      propertyPath: m_ApplyRootMotion
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7eb09a4123a5e4f4cacc83a019fec557, type: 3}
 --- !u!4 &502371100918608550 stripped
@@ -243,6 +253,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: pWorker_HP@T-Pose (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5866666021909216657, guid: 7eb09a4123a5e4f4cacc83a019fec557,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 143c33d775061974ca35d839f35995c1, type: 2}
+    - target: {fileID: 5866666021909216657, guid: 7eb09a4123a5e4f4cacc83a019fec557,
+        type: 3}
+      propertyPath: m_ApplyRootMotion
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7eb09a4123a5e4f4cacc83a019fec557, type: 3}
@@ -334,6 +354,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: pWorker_HP@T-Pose (5)
       objectReference: {fileID: 0}
+    - target: {fileID: 5866666021909216657, guid: 7eb09a4123a5e4f4cacc83a019fec557,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 143c33d775061974ca35d839f35995c1, type: 2}
+    - target: {fileID: 5866666021909216657, guid: 7eb09a4123a5e4f4cacc83a019fec557,
+        type: 3}
+      propertyPath: m_ApplyRootMotion
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7eb09a4123a5e4f4cacc83a019fec557, type: 3}
 --- !u!4 &6256340084675362209 stripped
@@ -423,6 +453,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: pWorker_HP@T-Pose (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5866666021909216657, guid: 7eb09a4123a5e4f4cacc83a019fec557,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 143c33d775061974ca35d839f35995c1, type: 2}
+    - target: {fileID: 5866666021909216657, guid: 7eb09a4123a5e4f4cacc83a019fec557,
+        type: 3}
+      propertyPath: m_ApplyRootMotion
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7eb09a4123a5e4f4cacc83a019fec557, type: 3}
@@ -514,6 +554,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: pWorker_HP@T-Pose
       objectReference: {fileID: 0}
+    - target: {fileID: 5866666021909216657, guid: 7eb09a4123a5e4f4cacc83a019fec557,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 143c33d775061974ca35d839f35995c1, type: 2}
+    - target: {fileID: 5866666021909216657, guid: 7eb09a4123a5e4f4cacc83a019fec557,
+        type: 3}
+      propertyPath: m_ApplyRootMotion
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7eb09a4123a5e4f4cacc83a019fec557, type: 3}
 --- !u!4 &8362138447367090266 stripped
@@ -603,6 +653,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: pWorker_HP@T-Pose (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5866666021909216657, guid: 7eb09a4123a5e4f4cacc83a019fec557,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 143c33d775061974ca35d839f35995c1, type: 2}
+    - target: {fileID: 5866666021909216657, guid: 7eb09a4123a5e4f4cacc83a019fec557,
+        type: 3}
+      propertyPath: m_ApplyRootMotion
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7eb09a4123a5e4f4cacc83a019fec557, type: 3}
