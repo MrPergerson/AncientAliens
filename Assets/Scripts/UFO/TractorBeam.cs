@@ -11,6 +11,29 @@ namespace AncientAliens
         TileObject tileObject;
         [SerializeField] bool DEBUG;
 
+        [SerializeField] GameObject tractorBeamVFX01;
+        [SerializeField] GameObject tractorBeamVFX02;
+        [SerializeField] GameObject tractorBeamVFX03;
+        ParticleSystem tractorBeam01;
+        ParticleSystem tractorBeam02;
+        ParticleSystem tractorBeam03;
+        [SerializeField] Transform tractorBeamVFXAnchor;
+
+        private void Awake()
+        {
+            tractorBeam01 = Instantiate(tractorBeamVFX01, tractorBeamVFXAnchor).GetComponent<ParticleSystem>();
+            tractorBeam02 = Instantiate(tractorBeamVFX02, tractorBeamVFXAnchor).GetComponent<ParticleSystem>();          
+            tractorBeam02.gameObject.SetActive(false);
+
+            tractorBeam03 = Instantiate(tractorBeamVFX03, tractorBeamVFXAnchor).GetComponent<ParticleSystem>();
+            
+            RaycastHit hit;
+            if(Physics.Raycast(transform.position, Vector3.down, out hit, 4f, LayerMask.GetMask("Ground")))
+            {
+                tractorBeam03.gameObject.transform.position = hit.point;
+            }
+        }
+
         public Tile GetTileBelow()
         {
 
@@ -59,6 +82,9 @@ namespace AncientAliens
             this.tileObject = tileObject;
             SetTileObjectPositionToTractorBeam();
 
+            tractorBeam01.gameObject.SetActive(false);
+            tractorBeam02.gameObject.SetActive(true);
+
             return true;
         }
 
@@ -81,6 +107,8 @@ namespace AncientAliens
                 SetTileObjectPositionToTile(tile);
                 GameRules.ufoCurrentSpeed = GameRules.ufoMaxSpeed;
                 tileObject = null;
+                tractorBeam01.gameObject.SetActive(true);
+                tractorBeam02.gameObject.SetActive(false);
                 return true;
             }
             else

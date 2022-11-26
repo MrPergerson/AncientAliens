@@ -6459,6 +6459,8 @@ MonoBehaviour:
   progress40: {fileID: 1465364722}
   progress60: {fileID: 1213817832}
   progress100: {fileID: 1654439901}
+  damagedVFX: {fileID: 1204692944616200109, guid: 5d085ce167b598149bce834bf911fa5a,
+    type: 3}
 --- !u!1 &1428407269
 GameObject:
   m_ObjectHideFlags: 0
@@ -9094,6 +9096,37 @@ Transform:
   m_Father: {fileID: 427683137}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
+--- !u!1 &1951672601
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1951672602}
+  m_Layer: 0
+  m_Name: tractor_beam_vfx
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1951672602
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1951672601}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.206, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4915145605789801267}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1970442721
 GameObject:
   m_ObjectHideFlags: 0
@@ -9275,7 +9308,7 @@ GameObject:
   - component: {fileID: 2001780284}
   - component: {fileID: 2001780283}
   - component: {fileID: 2001780282}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Plane
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10197,6 +10230,29 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4915145605638120334, guid: 193e7ac1776c8924094be85df8c837e6,
+        type: 3}
+      propertyPath: tractorBeamVFX01
+      value: 
+      objectReference: {fileID: 7098819153265504831, guid: cd9cf2f07bcb2384baf1165d7d29eaef,
+        type: 3}
+    - target: {fileID: 4915145605638120334, guid: 193e7ac1776c8924094be85df8c837e6,
+        type: 3}
+      propertyPath: tractorBeamVFX02
+      value: 
+      objectReference: {fileID: 4851495684020340934, guid: 5a62b6eaf2674f645bfc20a7f2e5cb1f,
+        type: 3}
+    - target: {fileID: 4915145605638120334, guid: 193e7ac1776c8924094be85df8c837e6,
+        type: 3}
+      propertyPath: tractorBeamVFX03
+      value: 
+      objectReference: {fileID: 2422066674720388593, guid: aa7f987a7217cdc4bb93a37eab759cba,
+        type: 3}
+    - target: {fileID: 4915145605638120334, guid: 193e7ac1776c8924094be85df8c837e6,
+        type: 3}
+      propertyPath: tractorBeamVFXAnchor
+      value: 
+      objectReference: {fileID: 1951672602}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 193e7ac1776c8924094be85df8c837e6, type: 3}
 --- !u!4 &4915145605789801267 stripped

@@ -20,6 +20,9 @@ namespace AncientAliens.Combinations
         protected CombineSoundPlayer soundPlayer;
         [SerializeField] protected bool playsSound;
 
+        [SerializeField] GameObject FinishedIcon;
+        [SerializeField] GameObject CancelledIcon;
+
         protected virtual void Awake()
         {
             var obj = transform.GetChild(0).GetChild(1);
@@ -58,6 +61,11 @@ namespace AncientAliens.Combinations
                 soundPlayer.PlayCombineCancelSFX();
 
             Destroy(this.gameObject);
+
+            if(CancelledIcon)
+            {
+                SpawnIcon(CancelledIcon);
+            }
         }
 
         protected abstract IEnumerator ProcessCombineAction();
@@ -73,6 +81,11 @@ namespace AncientAliens.Combinations
                 yield return new WaitForEndOfFrame();
 
             }
+
+            if (FinishedIcon)
+            {
+                SpawnIcon(FinishedIcon);
+            }
         }
 
         protected virtual void HideTimer()
@@ -86,6 +99,12 @@ namespace AncientAliens.Combinations
             {
                 GameManager.Instance.activeCombinations.Remove(this);
             }
+        }
+
+        protected void SpawnIcon(GameObject iconObj)
+        {
+            var icon = Instantiate(iconObj);
+            icon.transform.position = transform.position;
         }
     }
 

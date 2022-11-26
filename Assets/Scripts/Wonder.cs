@@ -18,6 +18,9 @@ namespace AncientAliens
         [SerializeField] GameObject progress60;
         [SerializeField] GameObject progress100;
 
+        [SerializeField] GameObject damagedVFX;
+        private ParticleSystem damageParticles;
+
         GameObject currentModel; 
 
         float starttime;
@@ -30,6 +33,18 @@ namespace AncientAliens
 
         void Start()
         {
+
+            if(damagedVFX)
+            {
+                damageParticles = Instantiate(damagedVFX, this.transform).GetComponent<ParticleSystem>();
+                damageParticles.transform.localPosition = Vector3.up;
+                damageParticles.gameObject.SetActive(false);
+                
+
+
+                //damageParticles.gameObject.SetActive(true);
+            }
+
 
             audioSource = GetComponent<AudioSource>();
             //UpdateModel(GameManager.Instance.WonderBuildProgress);
@@ -92,6 +107,12 @@ namespace AncientAliens
             audioSource.PlayOneShot(hit01);
             audioSource.PlayOneShot(hit02);
 
+            if(damageParticles)
+            {
+                damageParticles.gameObject.SetActive(true);
+                damageParticles.Play();
+            }
+
             float lerpTime = 0;
 
             starttime = Time.time;
@@ -114,6 +135,12 @@ namespace AncientAliens
                 meshRenderer.material.color = Color.Lerp(hitFlash, normalColor, lerpTime);
                 yield return new WaitForEndOfFrame();
 
+            }
+
+            if (damageParticles)
+            {
+                damageParticles.Stop();
+                damageParticles.gameObject.SetActive(false);
             }
 
 
