@@ -8517,6 +8517,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1848109985}
+  - component: {fileID: 1848109986}
   m_Layer: 5
   m_Name: SettingsScreen
   m_TagString: Untagged
@@ -8545,6 +8546,24 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1848109986
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1848109984}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b239d6ad2e9e5543afe8cb7348b83b1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MasterVolume: {fileID: 1863457578}
+  MusicVolume: {fileID: 1918771210}
+  SFXVolume: {fileID: 1828127067}
+  master: {fileID: 24300002, guid: 310d9dd518e2e1a4b849b7b58d9fdab4, type: 2}
+  music: {fileID: 5038618434395261335, guid: 310d9dd518e2e1a4b849b7b58d9fdab4, type: 2}
+  sfx: {fileID: -6493204333896640244, guid: 310d9dd518e2e1a4b849b7b58d9fdab4, type: 2}
 --- !u!1 &1851233541
 GameObject:
   m_ObjectHideFlags: 0
