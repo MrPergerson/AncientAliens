@@ -21,6 +21,9 @@ namespace AncientAliens.Combinations
             location.isLocked = true;
             combineTime = GameRules.peopleAndBarbarianCombineTime;
 
+            tileObjA.aniControl.PlayCombiningAttackingAnimation();
+            tileObjB.aniControl.PlayCombiningAttackingAnimation();
+
             var barbarian = tileObjA.Type == "Barbarian" ? tileObjA : tileObjB;
 
             if(barbarian.TryGetComponent(out BarbarianAI barbarianAI))

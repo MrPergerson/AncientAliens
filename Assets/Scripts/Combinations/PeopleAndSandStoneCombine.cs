@@ -16,6 +16,9 @@ namespace AncientAliens.Combinations
             transform.position = location.center;
             location.isLocked = true;
 
+            //var people = tileObjA.Type == "People" ? tileObjA : tileObjB;
+            //people.aniControl.PlayCombiningMiningAnimation();
+
             combineTime = GameRules.peopleAndRockCombineTIme;
 
             StartCoroutine(ProcessCombineAction());

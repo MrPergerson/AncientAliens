@@ -78,6 +78,8 @@ namespace AncientAliens
 
             if (tileObject.Type == "SandBrick")
                 GameRules.ufoCurrentSpeed *= GameRules.ufoSandBrickSlowDown;
+            else if (tileObject.Type == "People")
+                tileObject.aniControl.PlayFloatingAnimation();
 
             this.tileObject = tileObject;
             SetTileObjectPositionToTractorBeam();
@@ -106,9 +108,16 @@ namespace AncientAliens
             {
                 SetTileObjectPositionToTile(tile);
                 GameRules.ufoCurrentSpeed = GameRules.ufoMaxSpeed;
-                tileObject = null;
+                
                 tractorBeam01.gameObject.SetActive(true);
                 tractorBeam02.gameObject.SetActive(false);
+
+                if (tileObject.Type == "People")
+                    tileObject.aniControl.PlayIdleAnimation();
+
+
+                tileObject = null;
+
                 return true;
             }
             else
@@ -122,7 +131,16 @@ namespace AncientAliens
         private void SetTileObjectPositionToTractorBeam()
         {
             tileObject.transform.parent = this.transform;
-            tileObject.transform.localPosition = new Vector3(0, -0.8f, 0);
+
+            if(tileObject.Type == "People")
+            {
+                tileObject.transform.localPosition = new Vector3(0, -1.25f, -0.17f);
+            }
+            else
+            {
+                tileObject.transform.localPosition = new Vector3(0, -0.8f, 0);
+
+            }
         }
 
         private void SetTileObjectPositionToTile(Tile tile)

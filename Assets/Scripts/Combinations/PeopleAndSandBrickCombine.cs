@@ -17,6 +17,8 @@ namespace AncientAliens.Combinations
             location.isLocked = true;
             combineTime = GameRules.peopleAndBrickCombineTime;
 
+
+
             StartCoroutine(ProcessCombineAction());
             StartCoroutine(CombineTimer());
 

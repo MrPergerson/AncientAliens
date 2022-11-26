@@ -51,6 +51,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _type: Barbarian
   _canBeMoved: 0
+  soundPlayer: {fileID: 0}
+  aniControl: {fileID: 0}
   playsSound: 0
 --- !u!114 &2839983425918972406
 MonoBehaviour:
@@ -162,6 +164,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   idleBlendCount: 3
+  attackBlendCount: 1
+  peopleBlendCount: 0
 --- !u!1001 &1406914800514410076
 PrefabInstance:
   m_ObjectHideFlags: 0

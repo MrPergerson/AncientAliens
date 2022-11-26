@@ -15,7 +15,8 @@ namespace AncientAliens.TileObjects
         [SerializeField] bool _canBeMoved = true;
         int _value = 1;
 
-        TileObjectSoundPlayer soundPlayer;
+        public TileObjectSoundPlayer soundPlayer;
+        public AnimationControl aniControl;
         [SerializeField] protected bool playsSound;
 
         public string Type
@@ -51,6 +52,8 @@ namespace AncientAliens.TileObjects
                 this.soundPlayer = soundPlayer;
                 playsSound = true;
             }
+
+            aniControl = GetComponentInChildren<AnimationControl>();
 
             transform.parent = GameManager.Instance.TileObjContainer;
         }
@@ -94,6 +97,7 @@ namespace AncientAliens.TileObjects
 
             Destroy(this.gameObject);
         }
+
 
     }
 }

@@ -22,8 +22,13 @@ namespace AncientAliens.Combinations
             location.isLocked = true;
             combineTime = GameRules.peopleAndPeopleCombineTime;
 
+            tileObjA.transform.Rotate(new Vector3(0, 90, 0));
+
             StartCoroutine(ProcessCombineAction());
             StartCoroutine(CombineTimer());
+
+            tileObjA.aniControl.PlayCombiningPeopleAnimation();
+            tileObjB.aniControl.PlayCombiningPeopleAnimation();
 
             if (playsSound)
             {
@@ -46,6 +51,12 @@ namespace AncientAliens.Combinations
                 Location.ClearTile();
                 Location.AddTileObject(tileObjOutput);
 
+
+                tileObjA.aniControl.PlayIdleAnimation();
+                tileObjB.aniControl.PlayIdleAnimation();
+
+                tileObjA.transform.Rotate(new Vector3(0, 0, 0));
+
                 // GetClosestEmptyTile() is limited to only the adjcent tiles. If all 8 tiles are full, then destroy the tileObject.
                 // This is not intended design, but a temporary solution
                 var tile1 = Location.GetClosestEmptyTile();
@@ -61,6 +72,7 @@ namespace AncientAliens.Combinations
                     soundPlayer.StopCombineLoopSFX();
                     soundPlayer.PlayCombineEndSFX();
                 }
+
 
                 HideTimer();
 
