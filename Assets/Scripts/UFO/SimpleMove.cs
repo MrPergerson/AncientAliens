@@ -21,12 +21,17 @@ namespace AncientAliens.UFO
 
         private void Start()
         {
+
             GameRules.ufoCurrentSpeed = GameRules.ufoMaxSpeed;
+
+
         }
 
         private void Update()
         {
-           transform.position = transform.position + direction * GameRules.ufoCurrentSpeed * Time.deltaTime;
+            var gm = GameManager.Instance;
+            if (gm.GameStarted && !gm.GameOver)
+                transform.position = transform.position + direction * GameRules.ufoCurrentSpeed * Time.deltaTime;
         }
 
         private void LateUpdate()

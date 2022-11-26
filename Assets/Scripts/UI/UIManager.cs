@@ -12,6 +12,7 @@ namespace AncientAliens.UI
         public static UIManager Instance;
 
         [SerializeField] GameObject MainMenu;
+        [SerializeField] GameObject SettingsMenu;
         [SerializeField] GameObject PauseMenu;
         [SerializeField] GameObject WinScreen;
         [SerializeField] GameObject LoseScreen;
@@ -97,6 +98,37 @@ namespace AncientAliens.UI
 
         }
 
+        public void OpenSettings()
+        {
+            MainMenu.SetActive(false);
+            PauseMenu.SetActive(false);
+            WinScreen.SetActive(false);
+            LoseScreen.SetActive(false);
+
+            SettingsMenu.SetActive(true);
+
+            if (playsSound && SFX_OpenCloseMenu)
+            {
+                audioSource.PlayOneShot(SFX_OpenCloseMenu);
+            }
+
+            
+        }
+
+        public void CloseSettings()
+        {
+            SettingsMenu.SetActive(false);
+
+            if(GameManager.Instance.GamePaused)
+            {
+                PauseMenu.SetActive(true);
+            }
+            else
+            {
+                MainMenu.SetActive(true);
+            }
+        }
+
         public void CloseMenus(bool playSound = false)
         {
             MainMenu.SetActive(false);
@@ -112,6 +144,7 @@ namespace AncientAliens.UI
 
         public void RestartGame()
         {
+            Time.timeScale = 1;
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
 

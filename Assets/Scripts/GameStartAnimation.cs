@@ -12,12 +12,14 @@ namespace AncientAliens
         [SerializeField] Transform end;
         float starttime;
 
-
         public delegate void AnimationFinished();
         public event AnimationFinished onAnimationFinished;
 
+
+
         public void StartAnimation()
         {
+            
             StartCoroutine(PlayAnimation());
             //start = cam.transform;
         }
@@ -30,6 +32,7 @@ namespace AncientAliens
 
             starttime = Time.time;
 
+            
             while (Time.time - starttime < animationLength)
             {
                 lerpTime = (Time.time - starttime) / animationLength;
@@ -39,6 +42,7 @@ namespace AncientAliens
 
             }
 
+            
             GameManager.Instance.StartGame();
         }
     }

@@ -13,6 +13,7 @@ namespace AncientAliens
     {
         public static GameManager Instance;
 
+        [SerializeField] private bool _gameStarted;
         [SerializeField] private bool _gamePaused;
         [SerializeField] private bool _gameOver;
 
@@ -51,8 +52,8 @@ namespace AncientAliens
 
         Controls controls;
 
-        public delegate void GameStarted();
-        public event GameStarted onGameStarted;
+        public delegate void GameStart();
+        public event GameStart onGameStarted;
 
         public delegate void GameEnd();
         public event GameEnd onGameEnded;
@@ -95,6 +96,12 @@ namespace AncientAliens
                     GameLost();
             }
         }
+        
+        public bool GameStarted
+        {
+            get { return _gameStarted; }
+            private set { _gameStarted = value; }
+        }
 
         public bool GameOver
         {
@@ -119,6 +126,10 @@ namespace AncientAliens
             controls.Enable();
 
             controls.Player.Menu.performed += SetMenuState;
+
+            GameStarted = false;
+            GameOver = false;
+            GamePaused = false;
         }
 
         private void OnDisable()
@@ -152,7 +163,7 @@ namespace AncientAliens
         public void StartGame()
         {
 
-            
+            GameStarted = true;
             onGameStarted?.Invoke();
             //gameStartAnim.onAnimationFinished += {  }
 
