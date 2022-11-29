@@ -46,8 +46,13 @@ namespace AncientAliens.Combinations
                 tileObjB.DestroySelf();
                 Location.ClearTile();
             }
- 
+
             //HideTimer();
+
+            if (FinishedIcon)
+            {
+                SpawnIcon(FinishedIcon);
+            }
 
             Destroy(gameObject, 2);
             

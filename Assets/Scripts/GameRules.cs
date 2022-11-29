@@ -11,6 +11,9 @@ namespace AncientAliens
         public static int maxWonderProgress = 100;
         public static int brickProgressValue = 10;
 
+        // Level
+        public static int startingRockCount = 20;
+
         //UFO
         public static float ufoMaxSpeed = 3.4f;
         public static float ufoCurrentSpeed = 0;
@@ -18,7 +21,7 @@ namespace AncientAliens
 
         // TileObjects
         public static int peopleValue = 5;
-        public static int rockValue = 15;
+        public static int rockValue = 1;
         public static int brickValue = 5;
         public static int barbarianValue = 5;
         public static int cityValue = 10;

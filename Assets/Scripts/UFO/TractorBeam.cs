@@ -25,6 +25,7 @@ namespace AncientAliens
             tractorBeam02 = Instantiate(tractorBeamVFX02, tractorBeamVFXAnchor).GetComponent<ParticleSystem>();          
             tractorBeam02.gameObject.SetActive(false);
 
+            
             tractorBeam03 = Instantiate(tractorBeamVFX03, tractorBeamVFXAnchor).GetComponent<ParticleSystem>();
             
             RaycastHit hit;
@@ -32,6 +33,8 @@ namespace AncientAliens
             {
                 tractorBeam03.gameObject.transform.position = hit.point;
             }
+            tractorBeam03.gameObject.SetActive(false);
+
         }
 
         public Tile GetTileBelow()
@@ -86,6 +89,7 @@ namespace AncientAliens
 
             tractorBeam01.gameObject.SetActive(false);
             tractorBeam02.gameObject.SetActive(true);
+            tractorBeam03.gameObject.SetActive(true);
 
             return true;
         }
@@ -111,6 +115,7 @@ namespace AncientAliens
                 
                 tractorBeam01.gameObject.SetActive(true);
                 tractorBeam02.gameObject.SetActive(false);
+                tractorBeam03.gameObject.SetActive(false);
 
                 if (tileObject.Type == "People")
                     tileObject.aniControl.PlayIdleAnimation();

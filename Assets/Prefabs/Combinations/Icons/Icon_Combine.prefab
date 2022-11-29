@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2097687806366514189}
   - component: {fileID: 6391218398601352724}
   m_Layer: 0
-  m_Name: DeathIcon
+  m_Name: Icon_Combine
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -74,7 +74,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: a70f1848d411f9744a73448e70832710, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 4bc12cb64d8e7e6409f9f055746f6694, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -97,5 +97,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd19070a4eddf484d9e7fc7dc11e0c55, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  duration: 2
+  duration: 3
   speed: 0.5

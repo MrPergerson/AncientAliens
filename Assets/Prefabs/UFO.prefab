@@ -74,6 +74,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DEBUG: 0
+  tractorBeamVFX01: {fileID: 0}
+  tractorBeamVFX02: {fileID: 0}
+  tractorBeamVFX03: {fileID: 0}
+  tractorBeamVFXAnchor: {fileID: 0}
 --- !u!114 &4915145605638120329
 MonoBehaviour:
   m_ObjectHideFlags: 0

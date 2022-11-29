@@ -20,8 +20,8 @@ namespace AncientAliens.Combinations
         protected CombineSoundPlayer soundPlayer;
         [SerializeField] protected bool playsSound;
 
-        [SerializeField] GameObject FinishedIcon;
-        [SerializeField] GameObject CancelledIcon;
+        [SerializeField] protected GameObject FinishedIcon;
+        [SerializeField] protected GameObject CancelledIcon;
 
         protected virtual void Awake()
         {

@@ -49,6 +49,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   output: {fileID: 933673560006419520, guid: aa15dd5a0bdd65c4ba4ed0af2f2b48fb, type: 3}
   playsSound: 0
+  FinishedIcon: {fileID: 0}
+  CancelledIcon: {fileID: 0}
 --- !u!114 &-7523874788887097875
 MonoBehaviour:
   m_ObjectHideFlags: 0

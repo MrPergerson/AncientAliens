@@ -370,7 +370,7 @@ namespace AncientAliens
 
             EasyGrid.AssignTileObjectToTile(Instantiate(SandBrick), 9, 5);
 
-            for (int i = 0; i < 8; i++)
+            for (int i = 0; i < GameRules.startingRockCount; i++)
             {
                 var point = GetRandomPointOnGrid();
                 EasyGrid.AssignTileObjectToTile(Instantiate(SandStone), (int)point.x, (int)point.y);
