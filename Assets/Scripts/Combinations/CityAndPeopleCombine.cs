@@ -20,6 +20,9 @@ namespace AncientAliens.Combinations
             StartCoroutine(ProcessCombineAction());
             StartCoroutine(CombineTimer());
 
+            TileObject people = tileObjA.Type == "SandStone" ? tileObjA : tileObjB;
+            people.aniControl.PlayCombiningPeopleCityAnimation();
+
             if (playsSound)
             {
                 soundPlayer.PlayCombineStartSFX();

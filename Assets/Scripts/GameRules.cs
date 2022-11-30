@@ -36,7 +36,7 @@ namespace AncientAliens
         // Combinations
         public static float cityAndPeopleCombineTime = 10;
         public static float peopleAndBarbarianCombineTime = 5;
-        public static float peopleAndPeopleCombineTime = 12;
+        public static float peopleAndPeopleCombineTime = 15;
         public static float peopleAndBrickCombineTime = 20;
         public static float peopleAndRockCombineTIme = 8;
         

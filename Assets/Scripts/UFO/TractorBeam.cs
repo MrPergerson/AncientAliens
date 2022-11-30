@@ -21,7 +21,7 @@ namespace AncientAliens
 
         private void Awake()
         {
-            tractorBeam01 = Instantiate(tractorBeamVFX01, tractorBeamVFXAnchor).GetComponent<ParticleSystem>();
+            //tractorBeam01 = Instantiate(tractorBeamVFX01, tractorBeamVFXAnchor).GetComponent<ParticleSystem>();
             tractorBeam02 = Instantiate(tractorBeamVFX02, tractorBeamVFXAnchor).GetComponent<ParticleSystem>();          
             tractorBeam02.gameObject.SetActive(false);
 
@@ -87,7 +87,7 @@ namespace AncientAliens
             this.tileObject = tileObject;
             SetTileObjectPositionToTractorBeam();
 
-            tractorBeam01.gameObject.SetActive(false);
+            //tractorBeam01.gameObject.SetActive(false);
             tractorBeam02.gameObject.SetActive(true);
             tractorBeam03.gameObject.SetActive(true);
 
@@ -113,7 +113,7 @@ namespace AncientAliens
                 SetTileObjectPositionToTile(tile);
                 GameRules.ufoCurrentSpeed = GameRules.ufoMaxSpeed;
                 
-                tractorBeam01.gameObject.SetActive(true);
+                //tractorBeam01.gameObject.SetActive(true);
                 tractorBeam02.gameObject.SetActive(false);
                 tractorBeam03.gameObject.SetActive(false);
 

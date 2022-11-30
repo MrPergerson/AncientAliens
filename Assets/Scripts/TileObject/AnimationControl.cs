@@ -92,5 +92,16 @@ namespace AncientAliens
                 animators[i].SetFloat("PeopleBlend", Random.Range(0, peopleBlendCount));
             }           
         }
+
+        public void PlayCombiningPeopleCityAnimation()
+        {
+
+            for (int i = 0; i < animators.Length; i++)
+            {
+                float startPoint = Random.Range(0f, 1f);
+                animators[i].Play("PeopleCombining", 0, startPoint);
+                animators[i].SetFloat("PeopleBlend", 4);
+            }
+        }
     }
 }
