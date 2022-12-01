@@ -22,14 +22,42 @@ namespace AncientAliens.UFO
             simpleMove = GetComponent<SimpleMove>();
             tractorBeam = GetComponent<TractorBeam>();
             soundPlayer = GetComponent<UFOSoundPlayer>();
+            
+        }
+
+        private void DisableFunctionality()
+        {
+            simpleMove.enabled = false;
+            tractorBeam.enabled = false;
+            soundPlayer.enabled = false;
+        }
+
+        private void EnableFunctionality()
+        {
+            simpleMove.enabled = true;
+            tractorBeam.enabled = true;
+            soundPlayer.enabled = true;
         }
 
         private void Start()
         {
-            soundPlayer.PlayAMB(soundPlayer.AMB_UFO_Idle);
+            soundPlayer.PlayAMB01(soundPlayer.AMB_UFO_Idle);
+            soundPlayer.PlayAMB02(soundPlayer.AMB_UFO_Flyaround);
 
-            simpleMove.onStartedMoving += () => { soundPlayer.PlayAMB(soundPlayer.AMB_UFO_Flyaround); };
-            simpleMove.onStoppedMoving += () => { soundPlayer.PlayAMB(soundPlayer.AMB_UFO_Idle); };
+            simpleMove.onStartedMoving += StartedMoving;
+            simpleMove.onStoppedMoving += StoppedMoving;
+        }
+
+        private void StartedMoving()
+        {
+            //soundPlayer.
+            soundPlayer.MuteAMB02(false);
+            
+        }
+
+        private void StoppedMoving()
+        {
+            soundPlayer.MuteAMB02(true);
         }
 
         private void OnEnable()

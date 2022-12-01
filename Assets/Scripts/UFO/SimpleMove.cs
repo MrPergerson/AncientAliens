@@ -7,7 +7,6 @@ namespace AncientAliens.UFO
 {
     public class SimpleMove : MonoBehaviour
     {
-        [SerializeField, Range(0f, 20f)] float moveSpeed = 3f;
         //[SerializeField, Range(0f, 20f)] float maxAcceleration = 10f;
 
         Vector3 direction = Vector3.zero;
@@ -20,9 +19,19 @@ namespace AncientAliens.UFO
         public delegate void StoppedMoving();
         public event StartedMoving onStoppedMoving;
 
+        private void Start()
+        {
+
+            GameRules.ufoCurrentSpeed = GameRules.ufoMaxSpeed;
+
+
+        }
+
         private void Update()
         {
-           transform.position = transform.position + direction * moveSpeed * Time.deltaTime;
+            var gm = GameManager.Instance;
+            if (gm.GameStarted && !gm.GameOver)
+                transform.position = transform.position + direction * GameRules.ufoCurrentSpeed * Time.deltaTime;
         }
 
         private void LateUpdate()

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using AncientAliens.TileObjects;
 
 
 namespace AncientAliens.GridSystem
@@ -53,7 +54,7 @@ namespace AncientAliens.GridSystem
             return null;
         }
 
-        private TileObject PeekAtTopTileObject()
+        public TileObject PeekAtTopTileObject()
         {
             // 0 bottom
             // 1 top
@@ -111,14 +112,7 @@ namespace AncientAliens.GridSystem
 
         public bool AddTileObject(TileObject obj)
         {
-
-            if (GetTileObjectCount() >= 2) return false;
-
-            if(GetTileObjectCount() == 1)
-            {
-                var canShare = PeekAtTopTileObject().CanShareTile;
-                if (!canShare) return false;
-            }
+            if (GetTileObjectCount() == 2 || isLocked) return false;
 
             PushNewTileObject(obj);
             obj.transform.position = center; // tractor beam also sets position
@@ -137,7 +131,7 @@ namespace AncientAliens.GridSystem
             
             var tileObject = PeekAtTopTileObject();
             
-            if (tileObject != null && tileObject.CanBeMoved)
+            if (tileObject != null && tileObject.CanBeMoved && !isLocked)
             {
                 
                 return PullTileObject();

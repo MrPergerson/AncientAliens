@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using AncientAliens.GridSystem;
+using AncientAliens.TileObjects;
 
 namespace AncientAliens.Combinations
 {
@@ -11,42 +12,76 @@ namespace AncientAliens.Combinations
         {
             tileObjA = a;
             tileObjB = b;
-            this.location = location;
+            this.Location = location;
             transform.position = location.center;
             location.isLocked = true;
 
+            //var people = tileObjA.Type == "People" ? tileObjA : tileObjB;
+            //people.aniControl.PlayCombiningMiningAnimation();
+
+            combineTime = GameRules.peopleAndRockCombineTIme;
+
             StartCoroutine(ProcessCombineAction());
+            StartCoroutine(CombineTimer());
+
+            if (playsSound)
+            {
+                soundPlayer.PlayCombineStartSFX();
+                soundPlayer.PlayCombineLoopSFX();
+            }
         }
 
         protected override IEnumerator ProcessCombineAction()
         {
 
-            yield return new WaitForSeconds(2);
+            yield return new WaitForSeconds(combineTime);
 
-            location.isLocked = false;
+            Location.isLocked = false;
 
-            var newTileObject = Instantiate(output, location.center, Quaternion.identity);
+            var newTileObject = Instantiate(output, Location.center, Quaternion.identity);
             if (newTileObject.TryGetComponent(out TileObject tileObj))
             {
 
-                var people = location.ExtractTopTileObject();
-                Destroy(people.gameObject);
+                var people = Location.ExtractTopTileObject();
+                people.DestroySelf();
 
                 TileObject tileStone = tileObjA.Type == "SandStone" ? tileObjA : tileObjB;
-                tileStone.Value -= 10;
+                tileStone.Value -= tileObj.Value;
 
                 if(tileStone.Value <= 0)
                 {
-                    location.ExtractTopTileObject();
-                    Destroy(tileStone.gameObject);
+                    Location.ExtractTopTileObject();
+                    tileStone.DestroySelf();
                 }
 
-                location.AddTileObject(tileObj);
-                
-                Destroy(gameObject);
+                Location.AddTileObject(tileObj);
+
+                if (playsSound)
+                {
+                    soundPlayer.StopCombineLoopSFX();
+                    soundPlayer.PlayCombineEndSFX();
+                }
+
+                HideTimer();
+
+                Destroy(gameObject, 2);
             }
 
 
+        }
+
+        public override void Cancel()
+        {
+            StopAllCoroutines();
+            Location.isLocked = false;
+
+            var people = Location.ExtractTopTileObject();
+            people.DestroySelf();
+
+            if (playsSound)
+                soundPlayer.PlayCombineCancelSFX();
+
+            Destroy(this.gameObject);
         }
     }
 }
