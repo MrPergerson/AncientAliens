@@ -3,16 +3,16 @@
 Made by Miles Caraker, Alec Chou, and Cole Pergerson
 
 Contact details
-Miles
-milescaraker@gmail.com
-https://www.milescarakersound.com/
-https://www.instagram.com/miles_caraker/
+Miles<br>
+milescaraker@gmail.com <br>
+https://www.milescarakersound.com/<br>
+https://www.instagram.com/miles_caraker/<br>
 
-Alec
-asc997@yahoo.com
-https://i3lackfriday.artstation.com/
+Alec<br>
+asc997@yahoo.com<br>
+https://i3lackfriday.artstation.com/<br>
 
-Cole
-cole@mrpergerson.net
-www.mrpergerson.net
+Cole<br>
+cole@mrpergerson.net<br>
+www.mrpergerson.net<br>
  
