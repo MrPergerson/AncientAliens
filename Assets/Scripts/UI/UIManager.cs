@@ -152,5 +152,10 @@ namespace AncientAliens.UI
         {
             RestartGame();
         }
+
+        public void Quit()
+        {
+            Application.Quit();
+        }
     }
 }
