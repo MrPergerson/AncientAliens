@@ -15,7 +15,7 @@ namespace AncientAliens
         public static int startingRockCount = 20;
 
         //UFO
-        public static float ufoMaxSpeed = 3.4f;
+        public static float ufoMaxSpeed = 4f;
         public static float ufoCurrentSpeed = 0;
         public static float ufoSandBrickSlowDown = 0.4f;
 

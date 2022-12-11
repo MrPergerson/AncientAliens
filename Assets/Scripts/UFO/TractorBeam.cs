@@ -91,6 +91,8 @@ namespace AncientAliens
             tractorBeam02.gameObject.SetActive(true);
             tractorBeam03.gameObject.SetActive(true);
 
+            GameManager.Instance.ShowCombinableTileObjects(true);
+
             return true;
         }
 
@@ -110,6 +112,8 @@ namespace AncientAliens
 
             if(result == true)
             {
+                GameManager.Instance.ShowCombinableTileObjects(false);
+
                 SetTileObjectPositionToTile(tile);
                 GameRules.ufoCurrentSpeed = GameRules.ufoMaxSpeed;
                 
@@ -122,6 +126,8 @@ namespace AncientAliens
 
 
                 tileObject = null;
+
+                
 
                 return true;
             }

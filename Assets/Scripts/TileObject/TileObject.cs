@@ -15,6 +15,8 @@ namespace AncientAliens.TileObjects
         [SerializeField] bool _canBeMoved = true;
         int _value = 1;
 
+        Transform highLight;
+
         public TileObjectSoundPlayer soundPlayer;
         public AnimationControl aniControl;
         [SerializeField] protected bool playsSound;
@@ -56,6 +58,18 @@ namespace AncientAliens.TileObjects
             aniControl = GetComponentInChildren<AnimationControl>();
 
             transform.parent = GameManager.Instance.TileObjContainer;
+            
+
+
+            for(int i = 0; i < transform.childCount; i++)
+            {
+                if (transform.GetChild(i).tag == "Highlight")
+                {
+                    highLight = transform.GetChild(i);
+                    highLight.gameObject.SetActive(GameManager.Instance.HighlightTiles);
+                }
+            }
+            
         }
 
         private void Start()
@@ -98,6 +112,13 @@ namespace AncientAliens.TileObjects
             Destroy(this.gameObject);
         }
 
+
+        public void ShowHighlight(bool show)
+        {
+
+           highLight.gameObject.SetActive(show);
+
+        }
 
     }
 }

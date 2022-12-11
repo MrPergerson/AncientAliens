@@ -42,6 +42,12 @@ namespace AncientAliens
         [SerializeField] GameObject SandBrickAndWonderCombine;
         [SerializeField] GameObject SandBrickAndBarbarianCombine;
 
+        [Header("TileHighlight")]
+        [SerializeField] Transform TileHighlightsContainer;
+        [SerializeField] GameObject tileHighLightObj;
+        [SerializeField] List<GameObject> tileHighLights;
+        bool _highLightTiles;
+
         public List<TileObjectCombine> activeCombinations = new List<TileObjectCombine>();
 
         GameStartAnimation gameStartAnim;
@@ -119,6 +125,12 @@ namespace AncientAliens
         {
             get { return _gamePaused; }
             set { _gamePaused = value; }
+        }
+
+        public bool HighlightTiles
+        {
+            get { return _highLightTiles; }
+            private set { _highLightTiles = value; }
         }
 
         private void OnEnable()
@@ -376,6 +388,32 @@ namespace AncientAliens
                 EasyGrid.AssignTileObjectToTile(Instantiate(SandStone), (int)point.x, (int)point.y);
             }
 
+        }
+
+        public void ShowCombinableTileObjects(bool show)
+        {
+            if(show)
+            {
+                for(int i = 0; i < TileObjContainer.childCount; i++)
+                {
+                    var obj = TileObjContainer.GetChild(i);
+                    var location = EasyGrid.GetTileAt(obj.position);
+                    if(location.GetTileObjectCount() == 1)
+                    {
+                        obj.GetComponent<TileObject>().ShowHighlight(true);
+                    }
+                }
+            }
+            else
+            {
+                for (int i = 0; i < TileObjContainer.childCount; i++)
+                {
+                    var obj = TileObjContainer.GetChild(i);
+                    obj.GetComponent<TileObject>().ShowHighlight(false);
+                }
+            }
+
+            HighlightTiles = show;
         }
 
         private Vector2 GetRandomPointOnGrid()
